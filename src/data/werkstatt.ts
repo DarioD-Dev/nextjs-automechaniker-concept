@@ -19,8 +19,13 @@ export const WERKSTATT = {
     { tage: "Samstag", zeit: "08:00 – 12:00" },
     { tage: "Sonntag & Feiertag", zeit: "geschlossen" },
   ],
-  stundensatz: 95,
-  diagnosepauschale: 49,
+  // An der veröffentlichten Preisliste von V & D Automotive (Wien) geeicht,
+  // damit die Demo für einen echten Betrieb nicht sofort unglaubwürdig wirkt:
+  // Arbeitszeit Mechanik 120 €/h, Fehler auslesen 30 €. Die Diagnosepauschale
+  // ist genau eine halbe Stunde Arbeitszeit — keine Fantasiezahl.
+  stundensatz: 120,
+  auslesen: 30,
+  diagnosepauschale: 60,
   antwortzeit: "innerhalb von 4 Stunden an Werktagen",
 } as const;
 

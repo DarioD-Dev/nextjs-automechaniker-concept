@@ -65,13 +65,15 @@ export const PROBLEME = [
       { schritt: "Öldruck mit Prüfmanometer direkt am Motor messen", dauerMinuten: 20 },
       { schritt: "Fehlerspeicher auslesen, Öldruckschalter elektrisch prüfen", dauerMinuten: 15 },
     ],
-    pruefkosten: 49,
+    pruefkosten: 60,
+    pruefkostenHinweis:
+      "Eine halbe Stunde Arbeitszeit. Hier wird gemessen, nicht ausgelesen — ein Fehlerspeicher sagt beim Öldruck nichts Verwertbares.",
     reparaturSpanne: { von: 45, bis: 1200 },
     spannenHinweis:
       "Nach oben offen: Ein Lagerschaden bedeutet Motorinstandsetzung und liegt deutlich über dieser Spanne. Ob es so weit kommt, hängt fast immer davon ab, wie lange der Motor nach dem Aufleuchten noch gelaufen ist.",
     grenze:
       "Ob der Öldruck wirklich fehlt oder nur der Schalter falsch meldet, unterscheidet niemand am Telefon und kein Ratgeber im Internet — die beiden Fälle fühlen sich beim Fahren völlig gleich an. Dazwischen liegen 45 Euro und ein Motorschaden. Entschieden wird das mit einem Manometer am Motor, und erst danach reden wir über Geld.",
-    leistung: { titel: "Fehlersuche & Diagnose", preis: "49 €" },
+    leistung: { titel: "Fehlersuche & Diagnose", preis: "ab 30 €" },
     verwandt: ["motorkontrollleuchte"],
   },
   {
@@ -125,13 +127,15 @@ export const PROBLEME = [
         dauerMinuten: 5,
       },
     ],
-    pruefkosten: 49,
-    reparaturSpanne: { von: 0, bis: 450 },
+    pruefkosten: 30,
+    pruefkostenHinweis:
+      "Das ist das Auslesen des Fehlerspeichers. Auslesen ist noch keine Diagnose: Der Code sagt, welches System sich meldet, nicht welches Bauteil defekt ist. Wenn wir danach suchen müssen, rechnen wir ab der halben Stunde — 60 €, und das sagen wir vorher.",
+    reparaturSpanne: { von: 0, bis: 480 },
     spannenHinweis:
       "Die Null ist ernst gemeint. War es der Tankdeckel, löschen wir den Fehler, zeigen Ihnen die Dichtung, und Sie zahlen nur die Diagnose.",
     grenze:
-      "Ein undichter Tankdeckel und eine müde Lambdasonde erzeugen exakt dieselbe gelbe Leuchte. Zwischen null und 450 Euro entscheidet allein der Fehlerspeicher — und den kann man nur am Fahrzeug auslesen. Wer Ihnen am Telefon sagt, was es ist, rät.",
-    leistung: { titel: "Fehlersuche & Diagnose", preis: "49 €" },
+      "Ein undichter Tankdeckel und eine müde Lambdasonde erzeugen exakt dieselbe gelbe Leuchte. Zwischen null und 480 Euro entscheidet allein der Fehlerspeicher — und den kann man nur am Fahrzeug auslesen. Wer Ihnen am Telefon sagt, was es ist, rät.",
+    leistung: { titel: "Fehlersuche & Diagnose", preis: "ab 30 €" },
     verwandt: ["motoroeldruck"],
   },
   {
@@ -183,15 +187,15 @@ export const PROBLEME = [
         dauerMinuten: 20,
       },
     ],
-    pruefkosten: 49,
+    pruefkosten: 60,
     pruefkostenHinweis:
       "Entfällt, wenn Sie den Klimaservice gleich mitbeauftragen — die Messung ist dort enthalten.",
-    reparaturSpanne: { von: 129, bis: 900 },
+    reparaturSpanne: { von: 99, bis: 950 },
     spannenHinweis:
-      "129 Euro ist der Klimaservice mit neuem Kältemittel. Alles darüber ist eine echte Reparatur: Kondensator, Leitung oder Kompressor.",
+      "99 Euro ist der Klimaservice mit neuem Kältemittel, 119 Euro mit Desinfektion des Verdampfers. Alles darüber ist eine echte Reparatur: Kondensator, Leitung oder Kompressor.",
     grenze:
-      "Ob die Anlage nur leer ist oder ein Leck hat, zeigt sich erst beim Befüllen und Nachmessen. Deshalb sagen wir Ihnen vorher nicht zu, dass die 129 Euro reichen. Was wir Ihnen zusagen: Kältemittel nachfüllen ohne Lecksuche ist bei einer undichten Anlage weggeworfenes Geld, und wir sagen Ihnen, welcher der beiden Fälle vorliegt, bevor Sie sich entscheiden.",
-    leistung: { titel: "Klimaservice", preis: "129 €" },
+      "Ob die Anlage nur leer ist oder ein Leck hat, zeigt sich erst beim Befüllen und Nachmessen. Deshalb sagen wir Ihnen vorher nicht zu, dass die 99 Euro reichen. Was wir Ihnen zusagen: Kältemittel nachfüllen ohne Lecksuche ist bei einer undichten Anlage weggeworfenes Geld, und wir sagen Ihnen, welcher der beiden Fälle vorliegt, bevor Sie sich entscheiden.",
+    leistung: { titel: "Klimaservice", preis: "ab 99 €" },
     verwandt: [],
   },
 ] as const satisfies readonly Problem[];
