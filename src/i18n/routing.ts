@@ -21,6 +21,7 @@ export const routing = defineRouting({
     "/": "/",
     "/problem": "/problem",
     "/problem/[kennung]": "/problem/[kennung]",
+    "/unfall": "/unfall",
     "/termin": "/termin",
   },
 });

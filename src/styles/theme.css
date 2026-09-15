@@ -34,9 +34,12 @@
   --text-abschnitt--line-height: 1.15;
   --text-abschnitt--letter-spacing: -0.02em;
 
-  --text-karte: 1.25rem;
-  --text-karte--line-height: 1.3;
-  --text-karte--letter-spacing: -0.01em;
+  /* NICHT "karte" nennen: --color-karte existiert bereits, und beide würden
+     die Utility `text-karte` erzeugen. Tailwind entscheidet sich dann für die
+     Farbe — weiße Schrift auf weißer Fläche, und der Build bleibt grün. */
+  --text-block: 1.25rem;
+  --text-block--line-height: 1.3;
+  --text-block--letter-spacing: -0.01em;
 
   --text-lead: clamp(1.05rem, 1rem + 0.4vw, 1.25rem);
   --text-lead--line-height: 1.6;

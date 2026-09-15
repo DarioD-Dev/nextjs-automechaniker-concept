@@ -4,7 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { WARNLEUCHTEN, SYMPTOME } from "@/data/probleme";
 import { STUFEN_RANG, type Problem } from "@/data/types";
 import { ProblemSymbol } from "@/components/icons/ProblemSymbol";
-import { PfeilRechtsIcon } from "@/components/icons/UiIcons";
+import { AufprallIcon, PfeilRechtsIcon } from "@/components/icons/UiIcons";
 import { StufenSymbol, useStufenWorte } from "@/components/problem/Stufe";
 
 /**
@@ -53,6 +53,20 @@ export async function Finder() {
           </li>
         ))}
       </ul>
+
+      {/* Der dritte Einstieg. Er führt bewusst NICHT auf eine Problemkarte:
+          Beim Unfall ist die Ursache bekannt und die Kosten trägt im Idealfall
+          eine Versicherung — zwei Kartenfelder, die dort brechen würden. */}
+      <h2 className="mt-14 text-abschnitt font-semibold">{t("unfallTitel")}</h2>
+
+      <Link
+        href="/unfall"
+        className="group mt-4 flex items-center gap-4 border border-linie bg-karte px-4 py-5 transition-colors hover:border-instrument sm:px-5"
+      >
+        <AufprallIcon className="size-8 shrink-0 text-text-zweit" />
+        <span className="min-w-0 flex-1 leading-relaxed">{t("unfallLead")}</span>
+        <PfeilRechtsIcon className="size-5 shrink-0 text-text-zweit transition-transform group-hover:translate-x-0.5" />
+      </Link>
     </div>
   );
 }

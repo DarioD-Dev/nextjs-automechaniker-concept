@@ -199,7 +199,7 @@ async function Handlung({ problem }: { problem: Problem }) {
   if (problem.dringlichkeit === "sofort") {
     return (
       <section className="border-l-4 border-sofort bg-sofort-feld p-5 sm:p-6">
-        <h2 className="text-karte font-semibold text-sofort">{t("nichtWeiterfahren")}</h2>
+        <h2 className="text-block font-semibold text-sofort">{t("nichtWeiterfahren")}</h2>
         <p className="mt-2">{t("rufenSieAn")}</p>
         <TelefonKnopf variante="zweit" className="mt-4" />
         <p className="mt-5 text-sm leading-relaxed text-text-zweit">

@@ -56,6 +56,19 @@ export function HakenIcon(props: Props) {
   );
 }
 
+// Kein Auto und kein Foto: eine Aufprallmarke. Sie liest sich auf 32px
+// eindeutig und kommt ohne die Dramatik aus, die ein Unfallbild mitbringt.
+export function AufprallIcon(props: Props) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" {...props}>
+      <path
+        fill="currentColor"
+        d="M12 2.5 13.6 8.1 17.5 6.5 15.9 10.4 21.2 12 15.9 13.6 17.9 17.9 13.6 15.9 12 21.5 10.4 15.9 6.3 17.7 8.1 13.6 3 12 8.1 10.4 5.9 5.9 10.4 8.1Z"
+      />
+    </svg>
+  );
+}
+
 export function KreuzIcon(props: Props) {
   return (
     <svg {...gemeinsam} {...props}>

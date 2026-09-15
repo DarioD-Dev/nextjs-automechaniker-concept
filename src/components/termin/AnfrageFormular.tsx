@@ -30,7 +30,7 @@ export function AnfrageFormular() {
   if (zustand.status === "demo" && zustand.zusammenfassung) {
     return (
       <div className="border border-instrument bg-karte p-6">
-        <h2 className="flex items-center gap-2 text-karte font-semibold">
+        <h2 className="flex items-center gap-2 text-block font-semibold">
           <HakenIcon className="size-5" />
           {t("demoTitel")}
         </h2>

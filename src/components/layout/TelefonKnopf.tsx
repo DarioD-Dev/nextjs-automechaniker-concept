@@ -55,7 +55,7 @@ export function TelefonKnopf({
         ref={dialog}
         className="m-auto max-w-[26rem] rounded-sm border border-linie bg-karte p-6 text-text backdrop:bg-black/40"
       >
-        <h2 className="text-karte font-semibold">{t("titel")}</h2>
+        <h2 className="text-block font-semibold">{t("titel")}</h2>
         <p className="mt-3 text-sm leading-relaxed text-text-zweit">{t("text")}</p>
         <p className="mt-4 font-mono text-lg">{WERKSTATT.telefonAnzeige}</p>
         <button

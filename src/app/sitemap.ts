@@ -8,6 +8,7 @@ import { absoluteUrl } from "@/lib/seo";
 export default function sitemap(): MetadataRoute.Sitemap {
   return routing.locales.flatMap((locale) => [
     { url: absoluteUrl("/", locale), priority: 1 },
+    { url: absoluteUrl("/unfall", locale), priority: 0.9 },
     { url: absoluteUrl("/termin", locale), priority: 0.8 },
     ...PROBLEME.map((problem) => ({
       url: absoluteUrl(
