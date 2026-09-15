@@ -26,7 +26,7 @@ export const PROBLEME = [
     leuchtfarbe: "rot",
     zone: "motorraum",
     klartext:
-      "Der Öldruck im Motor ist unter den Wert gefallen, den die Steuerung noch als sicher ansieht. Ohne Öldruck laufen die Lager im Motor trocken — das ist der eine Fall am ganzen Fahrzeug, in dem Sekunden zählen.",
+      "Der Öldruck im Motor ist unter den Wert gefallen, den die Steuerung noch als sicher ansieht. Ohne Öldruck laufen die Lager im Motor trocken — das ist einer der wenigen Fälle am Fahrzeug, in denen Sekunden zählen.",
     dringlichkeit: "sofort",
     handlung:
       "Halten Sie an, sobald es sicher möglich ist, und stellen Sie den Motor ab. Nicht weiterfahren, auch nicht die letzten zwei Kilometer nach Hause.",
@@ -164,7 +164,7 @@ export const PROBLEME = [
         titel: "Kühlerlüfter läuft nicht",
         haeufigkeit: "haeufig",
         erklaerung:
-          "Im Stau und beim Langsamfahren kühlt allein der Lüfter. Fällt er aus, fällt es fast immer zuerst im Stadtverkehr auf und auf der Autobahn gar nicht.",
+          "Im Stau und beim Langsamfahren kühlt vor allem der Lüfter. Fällt er aus, fällt das meist zuerst im Stadtverkehr auf und bei zügiger Fahrt kaum, weil dann der Fahrtwind kühlt.",
       },
       {
         titel: "Thermostat klemmt",
@@ -210,7 +210,7 @@ export const PROBLEME = [
       "Diese Leuchte meldet entweder eine angezogene Feststellbremse oder zu wenig Bremsflüssigkeit. Der erste Fall ist harmlos und in drei Sekunden erledigt, der zweite nicht.",
     dringlichkeit: "sofort",
     handlung:
-      "Prüfen Sie zuerst, ob die Feststellbremse ganz gelöst ist. Wenn ja: Halten Sie an und fahren Sie nicht weiter. Prüfen Sie außerdem, ob sich das Bremspedal weicher anfühlt oder weiter durchtreten lässt als sonst.",
+      "Prüfen Sie zuerst, ob die Feststellbremse ganz gelöst ist. Geht die Leuchte danach aus, war es das. Bleibt sie an: anhalten und nicht weiterfahren. Achten Sie dabei darauf, ob sich das Bremspedal weicher anfühlt oder weiter durchtreten lässt als sonst.",
     verwechslung:
       "Manche Fahrzeuge zeigen dieselbe oder eine sehr ähnliche Leuchte auch für die elektrische Feststellbremse. Steht sie nur beim Anfahren kurz an und geht dann aus, war es die Feststellbremse — das ist Absicht und kein Fehler.",
     ursachen: [
@@ -269,18 +269,18 @@ export const PROBLEME = [
     leuchtfarbe: "rot",
     zone: "motorraum",
     klartext:
-      "Die Lichtmaschine lädt die Batterie nicht mehr. Das Fahrzeug läuft ab jetzt aus der Batterie, und die reicht je nach Alter und Verbrauchern für etwa zwanzig bis vierzig Minuten.",
+      "Das Ladesystem meldet, dass die Batterie nicht mehr geladen wird. Ab jetzt läuft das Fahrzeug aus der Batterie. Wie lange das reicht, hängt an ihrem Alter, an der Temperatur und daran, was gerade Strom zieht — rechnen Sie nicht damit, dass es für eine bestimmte Strecke genügt.",
     dringlichkeit: "sofort",
     handlung:
       "Halten Sie an, sobald es sicher möglich ist. Schalten Sie vorher alles ab, was Strom zieht und nicht gebraucht wird — Klimaanlage, Sitzheizung, Radio, Gebläse. Fahrlicht bleibt an, solange Sie fahren.",
     verschaerfung:
-      "Wenn zusätzlich die Lenkung schwerer wird, die Temperatur steigt oder es nach verbranntem Gummi riecht, ist vermutlich der Riemen gerissen. Dann bleibt es nicht bei einer leeren Batterie: Der Riemen treibt bei vielen Motoren auch die Wasserpumpe an.",
+      "Wenn zusätzlich die Lenkung schwerer wird, die Temperatur steigt oder es nach verbranntem Gummi riecht, ist vermutlich der Riemen gerissen. Dann bleibt es nicht bei einer leeren Batterie. Ob der Riemen bei Ihrem Motor auch die Wasserpumpe antreibt, ist von Bauart zu Bauart verschieden — bei vielen tut er es, bei anderen sitzt die Pumpe an der Steuerkette oder am Zahnriemen. Weil Sie das von außen nicht erkennen können, gilt hier: anhalten.",
     ursachen: [
       {
         titel: "Keilrippenriemen gerissen oder abgesprungen",
         haeufigkeit: "haeufig",
         erklaerung:
-          "Der Riemen treibt die Lichtmaschine an — und bei vielen Motoren gleichzeitig Wasserpumpe und Servopumpe. Deshalb ist das der Fall, der über die Dringlichkeit entscheidet.",
+          "Der Riemen treibt die Lichtmaschine an — je nach Motor zusätzlich Wasserpumpe und Servopumpe. Weil sich von außen nicht feststellen lässt, welche Bauart vor Ihnen steht, entscheidet dieser Fall über die Dringlichkeit.",
       },
       {
         titel: "Lichtmaschine oder Regler defekt",
@@ -328,10 +328,10 @@ export const PROBLEME = [
     leuchtfarbe: "gelb",
     zone: "vorderachse",
     klartext:
-      "Das Antiblockiersystem hat sich abgeschaltet. Ihre Bremsen funktionieren weiterhin ganz normal — was fehlt, ist die Regelung, die bei einer Vollbremsung das Blockieren der Räder verhindert.",
+      "Das Antiblockiersystem hat sich abgeschaltet. Die hydraulische Bremse selbst arbeitet weiter — das Fahrzeug bremst. Was fehlt, ist die Regelung, die bei einer Vollbremsung das Blockieren der Räder verhindert. Bei vielen Fahrzeugen fällt zusammen mit dem ABS auch die Stabilitätsregelung ESP aus; ob das bei Ihrem Modell so ist, steht in der Betriebsanleitung.",
     dringlichkeit: "bald",
     handlung:
-      "Sie können weiterfahren. Halten Sie mehr Abstand als sonst und rechnen Sie damit, dass die Räder bei einer Vollbremsung blockieren und das Fahrzeug dabei nicht mehr lenkbar ist. Lassen Sie den Fehlerspeicher in den nächsten Tagen auslesen.",
+      "In der Regel können Sie weiterfahren — maßgeblich ist, was die Betriebsanleitung Ihres Fahrzeugs dazu sagt. Halten Sie mehr Abstand als sonst und rechnen Sie damit, dass die Räder bei einer Vollbremsung blockieren und das Fahrzeug dabei nicht mehr lenkbar ist. Lassen Sie den Fehlerspeicher in den nächsten Tagen auslesen.",
     verschaerfung:
       "Wenn gleichzeitig die rote Bremswarnleuchte an ist, gilt etwas anderes: Dann meldet nicht nur die Regelung, sondern die Bremsanlage selbst. In dem Fall nicht weiterfahren.",
     ursachen: [
@@ -390,7 +390,7 @@ export const PROBLEME = [
       "Das System überwacht den Luftdruck aller vier Räder und meldet eine Abweichung. In den meisten Fällen fehlt tatsächlich Luft — und zwar an einem Rad, dem man das von außen nicht ansieht.",
     dringlichkeit: "bald",
     handlung:
-      "Prüfen Sie den Luftdruck an der nächsten Tankstelle, bevor Sie einen Termin ausmachen. Der Sollwert steht meist im Türrahmen der Fahrerseite oder im Tankdeckel. Das kostet nichts und klärt die Sache oft schon.",
+      "Prüfen Sie den Luftdruck an der nächsten Tankstelle, bevor Sie einen Termin ausmachen. Der Sollwert steht je nach Fahrzeug im Türrahmen der Fahrerseite, im Tankdeckel oder in der Betriebsanleitung. Das kostet nichts und klärt die Sache oft schon.",
     verschaerfung:
       "Wenn das Fahrzeug zur Seite zieht, das Lenkrad schwammig wird oder es beim Fahren dumpf schlägt, halten Sie an und sehen Sie nach. Ein Reifen, der schnell Luft verliert, ist etwas anderes als einer, der über Wochen einen Zehntelbar abgibt.",
     verwechslung:
@@ -412,7 +412,7 @@ export const PROBLEME = [
         titel: "Sensorbatterie am Ende",
         haeufigkeit: "gelegentlich",
         erklaerung:
-          "In jedem Rad sitzt ein kleiner Funksender mit fest verbauter Batterie. Nach etwa sieben bis zehn Jahren ist sie leer, und dann meldet das System, obwohl der Druck stimmt.",
+          "In jedem Rad sitzt ein kleiner Funksender mit fest verbauter Batterie. Sie hält üblicherweise fünf bis zehn Jahre; danach meldet das System, obwohl der Druck stimmt.",
       },
       {
         titel: "System nach Radwechsel nicht angelernt",
@@ -437,7 +437,7 @@ export const PROBLEME = [
       "Luftdruck prüfen und korrigieren kostet bei uns nichts. Die 30 Euro fallen erst an, wenn der Druck stimmt und wir das System auslesen müssen.",
     reparaturSpanne: { von: 0, bis: 480 },
     spannenHinweis:
-      "Null, wenn nur Luft gefehlt hat. Oben stehen vier neue Sensoren samt Montage — der Fall, der nach etwa acht Jahren auf jeden zukommt, der die Räder behalten will.",
+      "Null, wenn nur Luft gefehlt hat. Oben stehen vier neue Sensoren samt Montage — der Fall, der bei alten Sensoren irgendwann ansteht.",
     grenze:
       "Ob tatsächlich Luft fehlt oder nur ein Sensor müde ist, klärt ein Messgerät in zwei Minuten — aber nicht der Bildschirm. Prüfen Sie den Druck zuerst selbst. Das kostet nichts und beantwortet die Frage in den meisten Fällen bereits vollständig.",
     leistung: { titel: "Reifenkontrolle", preis: "kostenlos" },
@@ -454,7 +454,7 @@ export const PROBLEME = [
       "Der Filter, der den Ruß aus dem Abgas holt, ist voll und hat sich nicht selbst freibrennen können. Die Leuchte ist zunächst eine Aufforderung, keine Fehlermeldung — sie sagt, dass das Fahrzeug jetzt eine bestimmte Art von Fahrt braucht.",
     dringlichkeit: "bald",
     handlung:
-      "Fahren Sie eine längere Strecke bei gleichmäßiger, etwas höherer Drehzahl — Landstraße oder Autobahn, zwanzig bis dreißig Minuten, ohne anzuhalten. Schalten Sie dabei nicht in den höchsten Gang. Geht die Leuchte danach nicht aus, machen Sie einen Termin aus.",
+      "Fahren Sie eine längere Strecke ohne Halt bei gleichmäßig etwas höherer Drehzahl — Landstraße oder Autobahn, zwanzig bis dreißig Minuten, üblicherweise im Bereich um 2.000 bis 3.000 Umdrehungen. Was Ihr Hersteller dafür vorgibt, steht in der Betriebsanleitung und geht unseren Angaben vor. Geht die Leuchte danach nicht aus, machen Sie einen Termin aus.",
     verschaerfung:
       "Wenn zusätzlich die Motorkontrollleuchte angeht oder die Leistung spürbar nachlässt, hören Sie mit den Regenerationsversuchen auf. Ab da schaltet die Steuerung in ein Notprogramm, und weiteres Fahren macht den Filter nicht wieder frei.",
     ursachen: [
@@ -499,7 +499,7 @@ export const PROBLEME = [
       "Das Auslesen zeigt den Beladungswert und damit meist schon, ob eine Fahrt genügt. Eine am Gerät angestoßene Regeneration dauert eine halbe bis dreiviertel Stunde und kostet ab 60 Euro — das besprechen wir vorher mit Ihnen.",
     reparaturSpanne: { von: 0, bis: 1800 },
     spannenHinweis:
-      "Null, wenn eine ordentliche Fahrt reicht — das ist der häufigste Ausgang, und er kostet Sie nur Sprit. Oben steht ein neuer Filter. Dazwischen liegen Zwangsregeneration und Reinigung.",
+      "Null, wenn eine ordentliche Fahrt reicht — dann kostet es Sie nur Sprit. Oben steht ein neuer Filter. Dazwischen liegen Zwangsregeneration und Reinigung.",
     grenze:
       "Ob der Filter nur voll ist oder am Ende, entscheidet der gemessene Gegendruck zusammen mit der Aschemenge. Zwischen diesen beiden Fällen liegen eine Autobahnfahrt und ein vierstelliger Betrag — und von außen sehen sie gleich aus.",
     leistung: { titel: "Fehlersuche & Diagnose", preis: "ab 30 €" },
@@ -512,19 +512,13 @@ export const PROBLEME = [
     volksmund: ["Pfütze unterm Auto", "süßlicher Geruch", "Kühlwasser verloren"],
     zone: "motorraum",
     klartext:
-      "Ein süßlicher Geruch beim Aussteigen kommt fast immer von Kühlmittel. Es riecht deutlich anders als Benzin oder Öl, und dieser Geruch ist das verlässlichste Zeichen dafür, dass der Kühlkreis undicht ist.",
+      "Ein süßlicher Geruch beim Aussteigen deutet auf Kühlmittel hin; es riecht deutlich anders als Benzin oder Öl. Zusammen mit einer Pfütze unter dem Motor oder einem fallenden Kühlmittelstand ist das ein ernstzunehmender Hinweis auf eine undichte Stelle im Kühlkreis.",
     dringlichkeit: "sofort",
     handlung:
       "Sehen Sie auf die Temperaturanzeige. Steht sie höher als sonst oder riecht es süßlich, fahren Sie nicht weiter. Prüfen Sie bei kaltem Motor den Kühlmittelstand — und öffnen Sie den Verschluss nicht, solange der Motor warm ist.",
     verwechslung:
       "Klares, geruchloses Wasser unter der Beifahrerseite ist im Sommer völlig normal: Das ist Kondenswasser der Klimaanlage und kein Defekt. Erst Farbe im Wasser, ein süßlicher Geruch oder eine Pfütze unter dem Motor sind ein Grund nachzusehen.",
     ursachen: [
-      {
-        titel: "Kondenswasser der Klimaanlage",
-        haeufigkeit: "haeufig",
-        erklaerung:
-          "Klar, geruchlos, unter der Beifahrerseite, im Sommer nach jeder Fahrt. Daran ist nichts kaputt, und das ist der häufigste Grund für diese Sorge.",
-      },
       {
         titel: "Poröser Kühlmittelschlauch oder lose Schelle",
         haeufigkeit: "haeufig",
@@ -561,9 +555,9 @@ export const PROBLEME = [
     pruefkosten: 60,
     pruefkostenHinweis:
       "Eine halbe Stunde Arbeitszeit. Wenn Sie ein Foto der Pfütze mitbringen, spart das oft den ersten Schritt — die Farbe sagt schon viel.",
-    reparaturSpanne: { von: 0, bis: 1400 },
+    reparaturSpanne: { von: 90, bis: 1400 },
     spannenHinweis:
-      "Null, wenn es Kondenswasser der Klimaanlage war. Dann ist nichts kaputt und wir sagen Ihnen das, ohne etwas zu berechnen. Oben steht wieder die Zylinderkopfdichtung.",
+      "Unten stehen Schlauch und Schelle. Oben steht wieder die Zylinderkopfdichtung. Und wenn sich herausstellt, dass es Kondenswasser der Klimaanlage war, ist gar nichts kaputt — das sagen wir Ihnen, ohne etwas zu berechnen.",
     grenze:
       "Woher die Flüssigkeit kommt, sieht man nicht an der Pfütze, sondern an der Stelle, an der sie austritt — und die liegt meistens oben, nicht unten. Deshalb drücken wir den Kreis ab, statt zu raten. Was sich aus der Ferne gar nicht beurteilen lässt: ob überhaupt Kühlmittel fehlt oder ob Sie Kondenswasser vor sich haben.",
     leistung: { titel: "Fehlersuche & Diagnose", preis: "ab 60 €" },
@@ -581,7 +575,7 @@ export const PROBLEME = [
     handlung:
       "Wenn es nur quietscht: Sie können weiterfahren, lassen Sie die Bremsen in den nächsten Tagen ansehen. Achten Sie darauf, ob das Geräusch nach den ersten Bremsungen verschwindet — dann war es meist nur Flugrost.",
     verschaerfung:
-      "Wenn es metallisch schleift oder mahlt, wenn das Pedal vibriert oder wenn der Bremsweg länger geworden ist, fahren Sie nicht weiter. Dann läuft die Scheibe womöglich auf dem Träger des Belags, und dabei wird in wenigen Kilometern aus einem Belag für 180 Euro eine Scheibe dazu.",
+      "Wenn es metallisch schleift oder mahlt, wenn das Pedal vibriert oder wenn der Bremsweg länger geworden ist, fahren Sie nicht weiter. Dann läuft möglicherweise das Trägerblech des Belags auf der Scheibe — und aus einem Belagwechsel werden Belag und Scheibe.",
     verwechslung:
       "Nach einer Nacht im Regen quietschen fast alle Bremsen bei den ersten Bremsungen. Das ist Flugrost auf der Scheibe, er wird beim Bremsen abgetragen, und nach zwei Minuten ist Ruhe. Bleibt das Geräusch dagegen den ganzen Tag, ist es etwas anderes.",
     ursachen: [
@@ -650,7 +644,7 @@ export const PROBLEME = [
         titel: "Batterie schwach oder am Ende",
         haeufigkeit: "haeufig",
         erklaerung:
-          "Mit Abstand der häufigste Grund. Typisch ist ein schnelles Klicken, eine dunkler werdende Innenbeleuchtung und ein Anlasser, der hörbar müde dreht.",
+          "Der häufigste Grund. Typisch ist ein schnelles Klicken, eine dunkler werdende Innenbeleuchtung und ein Anlasser, der hörbar müde dreht.",
       },
       {
         titel: "Verbraucher über Nacht angelassen",
@@ -684,7 +678,7 @@ export const PROBLEME = [
       "Der Batterietest für sich ist bei uns kostenlos. Die 60 Euro fallen an, wenn die Batterie in Ordnung ist und wir weitersuchen müssen — dann hat die kostenlose Prüfung immerhin die häufigste Ursache ausgeschlossen.",
     reparaturSpanne: { von: 0, bis: 700 },
     spannenHinweis:
-      "Null, wenn die Batterie nur leer war und nach dem Laden ihre Werte hält. Oben steht ein getauschter Anlasser.",
+      "Null, wenn nur ein Verbraucher angelassen war und die Batterie beim kostenlosen Test ihre Werte hält. Oben steht ein getauschter Anlasser.",
     grenze:
       "Ob die Batterie schwach ist oder der Anlasser, klingt am Telefon ähnlich und ist technisch etwas ganz anderes. Das klärt eine Messung unter Last in wenigen Minuten. Was wir Ihnen gar nicht sagen können: ob Ihre Batterie nach dem Laden noch ein halbes Jahr durchhält. Das hängt an ihrem Alter und daran, wie oft sie schon tief entladen war.",
     leistung: { titel: "Batterietest", preis: "kostenlos" },
@@ -697,7 +691,7 @@ export const PROBLEME = [
     volksmund: ["Klima kühlt nicht", "Klimaanlage kaputt", "Klima bläst nur Luft"],
     zone: "innenraum",
     klartext:
-      "Die Anlage läuft, aber die Luft wird nicht mehr kalt. In den allermeisten Fällen fehlt Kältemittel — und zwar nicht, weil es verbraucht wird, sondern weil es über die Jahre entwichen ist.",
+      "Die Anlage läuft, aber die Luft wird nicht mehr kalt. Meistens fehlt Kältemittel — und zwar nicht, weil es verbraucht wird, sondern weil es über die Jahre entwichen ist.",
     dringlichkeit: "planbar",
     handlung:
       "Kein Notfall. Am besten zusammen mit dem nächsten Service erledigen. Wenn Sie es einrichten können: vor dem Frühjahr, dann sind die Termine entspannter.",
