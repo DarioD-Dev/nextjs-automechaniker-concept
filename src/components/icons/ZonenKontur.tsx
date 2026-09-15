@@ -1,4 +1,5 @@
 import type { Zone } from "@/data/types";
+import { cn } from "@/lib/cn";
 
 /**
  * Hier kommt die ursprüngliche Idee der Fahrzeuggrafik zurück — in der Rolle,
@@ -32,14 +33,14 @@ const BEREICHE: Record<Zone, { form: React.ReactElement; name: string }> = {
   },
 };
 
-export function ZonenKontur({ zone }: { zone: Zone }) {
+export function ZonenKontur({ zone, className }: { zone: Zone; className?: string }) {
   const bereich = BEREICHE[zone];
 
   return (
     <figure className="m-0">
       <svg
         viewBox="0 0 120 44"
-        className="w-full max-w-[18rem]"
+        className={cn("w-full max-w-[18rem]", className)}
         role="img"
         aria-label={`Fahrzeugkontur, hervorgehoben: ${bereich.name}`}
       >

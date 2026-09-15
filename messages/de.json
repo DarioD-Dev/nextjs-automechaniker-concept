@@ -72,7 +72,12 @@
     "nichtWeiterfahren": "Nicht weiterfahren",
     "rufenSieAn": "Rufen Sie uns an",
     "pannenhilfe": "Wenn das Fahrzeug nicht mehr fährt, hilft die Pannenhilfe schneller als wir:",
-    "terminAnfragen": "Termin anfragen"
+    "terminAnfragen": "Termin anfragen",
+    "befund": "Befund",
+    "zurHandlung": "Was jetzt zu tun ist",
+    "minuten": "Min",
+    "zusammen": "zusammen",
+    "wasWirPruefenKurz": "Prüfung"
   },
   "Stufe": {
     "sofortWort": "Sofort anhalten",

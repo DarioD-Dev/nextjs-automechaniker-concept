@@ -7,7 +7,9 @@ import { extendTailwindMerge } from "tailwind-merge";
 const kwMerge = extendTailwindMerge({
   extend: {
     classGroups: {
-      "font-size": [{ text: ["hero", "abschnitt", "block", "lead", "label"] }],
+      "font-size": [
+        { text: ["hero", "abschnitt", "block", "lead", "label", "zahl", "zahl-klein"] },
+      ],
       py: [{ py: ["abschnitt", "abschnitt-lg"] }],
     },
   },

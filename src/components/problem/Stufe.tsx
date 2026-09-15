@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import type { Stufe } from "@/data/types";
 import { cn } from "@/lib/cn";
 
@@ -9,10 +10,38 @@ import { cn } from "@/lib/cn";
  * Rot-Grün-Sehschwäche betrifft rund acht Prozent der Männer — bei dieser
  * Zielgruppe ist das keine Randnotiz, sondern der Regelfall im Wartezimmer.
  */
+/**
+ * Alle Klassennamen stehen hier AUSGESCHRIEBEN — auch die, die sich rechnerisch
+ * ableiten ließen.
+ *
+ * Grund: Tailwind erzeugt nur Utilities, die es als Zeichenkette im Quelltext
+ * findet. Ein `rand.replace("border-", "bg-")` liefert zwar den richtigen
+ * Namen, aber die Klasse existiert im Stylesheet nicht — das Ergebnis ist eine
+ * transparente Fläche bei grünem Build. Genau so war die Dringlichkeitskante
+ * beim ersten Versuch unsichtbar.
+ */
 export const STUFEN_STIL = {
-  sofort: { text: "text-sofort", feld: "bg-sofort-feld", rand: "border-sofort" },
-  bald: { text: "text-text", feld: "bg-bald-feld", rand: "border-bald" },
-  planbar: { text: "text-planbar", feld: "bg-planbar-feld", rand: "border-planbar" },
+  sofort: {
+    text: "text-sofort",
+    feld: "bg-sofort-feld",
+    rand: "border-sofort",
+    voll: "bg-sofort",
+    kanteUnten: "border-b-sofort",
+  },
+  bald: {
+    text: "text-text",
+    feld: "bg-bald-feld",
+    rand: "border-bald",
+    voll: "bg-bald",
+    kanteUnten: "border-b-bald",
+  },
+  planbar: {
+    text: "text-planbar",
+    feld: "bg-planbar-feld",
+    rand: "border-planbar",
+    voll: "bg-planbar",
+    kanteUnten: "border-b-planbar",
+  },
 } as const;
 
 /** Gelb erreicht auf Weiß nur 2.16:1 und ist deshalb niemals Textfarbe.
@@ -36,6 +65,15 @@ export function StufenSymbol({ stufe, className }: { stufe: Stufe; className?: s
       {stufe === "planbar" && <circle cx="6" cy="6" r="5" fill="currentColor" />}
     </svg>
   );
+}
+
+/** Dieselben Worte für asynchrone Serverkomponenten. `useTranslations` ist
+ *  dort nicht aufrufbar — die Hook-Fassung bleibt für synchrone Komponenten. */
+export async function getStufenWorte(stufe: Stufe) {
+  const t = await getTranslations("Stufe");
+  if (stufe === "sofort") return { wort: t("sofortWort"), weiterfahren: t("sofortWeiterfahren") };
+  if (stufe === "bald") return { wort: t("baldWort"), weiterfahren: t("baldWeiterfahren") };
+  return { wort: t("planbarWort"), weiterfahren: t("planbarWeiterfahren") };
 }
 
 export function useStufenWorte() {
