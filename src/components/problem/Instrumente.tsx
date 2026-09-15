@@ -20,17 +20,29 @@ import { STUFEN_STIL, StufenSymbol } from "./Stufe";
  *  und keine Häufigkeit. */
 const GEWICHT: Record<Haeufigkeit, number> = { haeufig: 3, gelegentlich: 2, selten: 1 };
 
-export function Haeufigkeitsskala({ haeufigkeit }: { haeufigkeit: Haeufigkeit }) {
+export function Haeufigkeitsskala({
+  haeufigkeit,
+  wort,
+}: {
+  haeufigkeit: Haeufigkeit;
+  wort: string;
+}) {
   const gefuellt = GEWICHT[haeufigkeit];
   return (
-    <span aria-hidden="true" className="flex gap-1">
-      {[0, 1, 2].map((i) => (
-        <span
-          key={i}
-          className={cn("block h-2.5 w-4", i < gefuellt ? "bg-instrument" : "bg-linie")}
-        />
-      ))}
-    </span>
+    // Balken und Wort immer in einer Zeile, auf jeder Breite gleich: So
+    // erklärt sich die Skala selbst. Stand der Balken über dem Wort, musste
+    // man ihn erst entschlüsseln.
+    <p className="flex items-center gap-2.5">
+      <span aria-hidden="true" className="flex shrink-0 gap-1">
+        {[0, 1, 2].map((i) => (
+          <span
+            key={i}
+            className={cn("block h-2.5 w-3.5", i < gefuellt ? "bg-instrument" : "bg-linie")}
+          />
+        ))}
+      </span>
+      <span className="font-mono text-xs text-text-zweit">{wort}</span>
+    </p>
   );
 }
 
@@ -52,18 +64,21 @@ export function Zeitachse({
     <div>
       <ol className="divide-y divide-linie border-y border-linie">
         {schritte.map((schritt, i) => (
-          <li key={schritt.schritt} className="grid gap-2 py-4 sm:grid-cols-[1fr_9rem] sm:gap-6">
+          <li key={schritt.schritt} className="grid gap-2 py-4 sm:grid-cols-[1fr_11rem] sm:gap-6">
             <p className="flex gap-3 leading-relaxed">
               <span className="font-mono text-sm text-text-zweit">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span>{schritt.schritt}</span>
             </p>
-            <p className="flex items-center gap-2.5 sm:justify-end">
+            {/* Gemeinsame Nulllinie: Die Balken beginnen alle links an
+                derselben Kante. Rechtsbündig ausgerichtet waren sie nicht
+                vergleichbar — und damit war der Balken Dekoration. */}
+            <p className="flex items-center gap-3">
               <span
                 aria-hidden="true"
-                className="block h-2.5 bg-instrument"
-                style={{ width: `${Math.round((schritt.dauerMinuten / laengste) * 72)}px` }}
+                className="block h-2.5 shrink-0 bg-instrument"
+                style={{ width: `${Math.round((schritt.dauerMinuten / laengste) * 88)}px` }}
               />
               <span className="font-mono text-sm whitespace-nowrap text-text-zweit">
                 {schritt.dauerMinuten} {minutenLabel}
@@ -99,7 +114,7 @@ export function Zahlentafel({
 }) {
   return (
     <div>
-      <p className="font-mono text-label tracking-[0.09em] text-text-zweit uppercase">{label}</p>
+      <p className="font-mono text-label tracking-[0.09em] text-titel uppercase">{label}</p>
       <p className="mt-1 flex items-baseline gap-2">
         <span className="font-mono text-zahl font-bold">{betrag}</span>
         <span className="font-mono text-lg text-text-zweit">{einheit}</span>
@@ -111,39 +126,38 @@ export function Zahlentafel({
   );
 }
 
-export function Spannenachse({
+/** Die Spanne als EINE gesetzte Zahl, nicht als Achse mit zwei Enden.
+ *  Die frühere Achse sah aus wie ein Regler — eine falsche Affordanz auf einer
+ *  Seite, deren Versprechen lautet, nichts vorzutäuschen. */
+export function Spanne({
   label,
   von,
   bis,
   einheit,
   offen,
+  offenLabel,
 }: {
   label: string;
   von: number;
   bis: number;
   einheit: string;
   offen: boolean;
+  offenLabel: string;
 }) {
   return (
     <div>
-      <p className="font-mono text-label tracking-[0.09em] text-text-zweit uppercase">{label}</p>
-      <div className="mt-3 flex items-baseline justify-between gap-4">
-        <span className="font-mono text-zahl-klein font-bold">
-          {von} <span className="text-base font-normal text-text-zweit">{einheit}</span>
+      <p className="font-mono text-label tracking-[0.09em] text-titel uppercase">{label}</p>
+      <p className="mt-1 flex flex-wrap items-baseline gap-x-2">
+        <span className="font-mono text-zahl font-bold whitespace-nowrap">
+          {von}–{bis}
         </span>
-        <span className="font-mono text-zahl-klein font-bold">
-          {bis}
-          {offen && <span className="text-text-zweit">+</span>}{" "}
-          <span className="text-base font-normal text-text-zweit">{einheit}</span>
-        </span>
-      </div>
-      {/* Die Achse zeigt die Spannweite, nicht eine Verteilung — eine
-          Verteilung hätten wir nicht, und sie zu zeichnen wäre erfunden. */}
-      <div aria-hidden="true" className="mt-2 flex items-center">
-        <span className="block h-3 w-px bg-instrument" />
-        <span className="block h-px flex-1 bg-linie-stark" />
-        <span className={cn("block w-px bg-instrument", offen ? "h-2" : "h-3")} />
-      </div>
+        <span className="font-mono text-lg text-text-zweit">{einheit}</span>
+      </p>
+      {offen && (
+        <p className="mt-2 font-mono text-xs tracking-[0.06em] text-text-zweit uppercase">
+          {offenLabel}
+        </p>
+      )}
     </div>
   );
 }
@@ -210,7 +224,7 @@ export function Befundtafel({
 
       <a
         href={sprungZiel}
-        className="block border-t border-linie px-4 py-3 text-sm font-medium underline decoration-linie-stark underline-offset-4 hover:decoration-instrument"
+        className="block border-t border-linie px-4 py-3 text-sm font-medium underline decoration-akzent decoration-2 underline-offset-4"
       >
         {sprungLabel} →
       </a>

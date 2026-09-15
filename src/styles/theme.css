@@ -9,6 +9,11 @@
   --color-text-zweit: var(--text-zweit);
   --color-text-auf-instrument: var(--text-auf-instrument);
 
+  --color-akzent: var(--akzent);
+  --color-akzent-feld: var(--akzent-feld);
+  --color-zone: var(--zone);
+  --color-titel: var(--text-titel);
+
   --color-linie: var(--linie-fein);
   --color-linie-stark: var(--linie-stark);
 

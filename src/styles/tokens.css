@@ -3,14 +3,30 @@
   /* Fläche und Struktur — das ganze Gerüst der Seite ist unbunt.
      Das ist keine Geschmacksentscheidung, sondern die Voraussetzung dafür,
      dass die drei Signalfarben unten überhaupt etwas bedeuten können. */
-  --kw-papier: #fafaf8; /* Seitengrund, minimal warmes Papierweiß */
-  --kw-weiss: #ffffff; /* Karten, erhöhte Flächen */
-  --kw-graphit: #101418; /* Fließtext, Überschriften — 17.5:1 auf Papier */
-  --kw-grau-600: #4a5259; /* Sekundärtext — 7.5:1 auf Papier */
+  --kw-papier: #faf2ef; /* Off-White, warm — Seitengrund */
+  --kw-weiss: #ffffff; /* Karten und Tafeln. Auf dem warmen Grund jetzt
+                          tatsächlich als erhöht erkennbar; gegen das alte
+                          #fafaf8 war der Unterschied kaum sichtbar. */
+  --kw-graphit: #101418; /* Fließtext — 16.8:1 auf Off-White */
+  --kw-grau-600: #4a5259; /* Sekundärtext — 7.2:1 */
   --kw-grau-300: #9aa1a6; /* nur Symbole und Trennendes, nie Text */
-  --kw-linie: #e2e4e0; /* Haarlinien */
-  --kw-instrument: #1b2a33; /* Kopf, Fuß, Vorbefund, Hauptknopf — 14:1 */
-  --kw-instrument-hell: #2d414d; /* Hover auf Instrumentflächen */
+  --kw-linie: #e7ddd9; /* Haarlinien, an den warmen Grund angeglichen */
+  --kw-instrument: #213e60; /* Strukturfarbe der Marke: Kopf, Fuß, Tafelband,
+                               Überschriften, Labels — 9.9:1 auf Off-White,
+                               10.9:1 für Weiß darauf. */
+  --kw-instrument-hell: #2f5482; /* Hover auf Instrumentflächen */
+
+  /* Akzent. Nur Fläche und Marke, nie Text: 2.33:1 auf Off-White.
+     ACHTUNG — dieser Ton liegt nur 14° vom Dringlichkeits-Gelb (#e0a200)
+     entfernt. Er darf deshalb niemals in der Nähe einer gelben Stufe stehen
+     und niemals etwas markieren, das nach Warnung aussehen könnte. */
+  --kw-akzent: #e68c3a;
+  --kw-akzent-feld: #fbeada;
+
+  /* Nur für die hervorgehobene Zone in der Fahrzeugkontur. Dort gibt es keine
+     Dringlichkeitslesart, weil die Zeichnung einen Ort zeigt und keinen
+     Zustand. Überall sonst wäre der Ton zu nah am Signal-Blau. */
+  --kw-zone: #94b6ef;
 
   /* ─── Der Signalkanal. Reserviert. ───
      Rot–Gelb–Blau ist die Sprache, die das Armaturenbrett bereits spricht.
@@ -49,6 +65,13 @@
   --stufe-bald-feld: var(--kw-gelb-feld);
   --stufe-planbar: var(--kw-blau);
   --stufe-planbar-feld: var(--kw-blau-feld);
+
+  --akzent: var(--kw-akzent);
+  --akzent-feld: var(--kw-akzent-feld);
+  --zone: var(--kw-zone);
+  /* Überschriften und Labels tragen die Strukturfarbe, der Fließtext bleibt
+     Graphit. Alles blau zu setzen hätte die Seite eingefärbt statt gegliedert. */
+  --text-titel: var(--kw-instrument);
 
   --fokus-ring: var(--kw-instrument);
 }

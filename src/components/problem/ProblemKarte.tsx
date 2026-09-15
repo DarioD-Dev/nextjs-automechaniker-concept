@@ -11,13 +11,7 @@ import { TelefonKnopf } from "@/components/layout/TelefonKnopf";
 import { VorbefundKnopf } from "@/components/vorbefund/VorbefundKnopf";
 import { Container } from "@/components/ui/Container";
 import { StufenBlock, STUFEN_STIL, getStufenWorte } from "./Stufe";
-import {
-  Befundtafel,
-  Haeufigkeitsskala,
-  Spannenachse,
-  Zahlentafel,
-  Zeitachse,
-} from "./Instrumente";
+import { Befundtafel, Haeufigkeitsskala, Spanne, Zahlentafel, Zeitachse } from "./Instrumente";
 import { cn } from "@/lib/cn";
 
 /**
@@ -68,7 +62,7 @@ export async function ProblemKarte({ problem }: { problem: Problem }) {
                 <p className="font-mono text-label tracking-[0.09em] text-text-zweit uppercase">
                   {problem.art === "warnleuchte" ? t("warnleuchte") : t("symptom")}
                 </p>
-                <h1 className="mt-1 text-hero font-bold">{problem.titel}</h1>
+                <h1 className="mt-1 text-hero font-bold text-titel">{problem.titel}</h1>
                 <p className="mt-2 font-mono text-sm text-text-zweit">
                   {t("auchGenannt")} {problem.volksmund.join(", ")}
                 </p>
@@ -105,13 +99,8 @@ export async function ProblemKarte({ problem }: { problem: Problem }) {
               <Abschnitt titel={t("ursachen")} zusatz={t("ursachenHinweis")}>
                 <ul className="divide-y divide-linie border-y border-linie">
                   {problem.ursachen.map((u) => (
-                    <li key={u.titel} className="grid gap-2 py-4 sm:grid-cols-[7rem_1fr] sm:gap-6">
-                      <div className="flex items-center gap-3 sm:block">
-                        <Haeufigkeitsskala haeufigkeit={u.haeufigkeit} />
-                        <span className="font-mono text-xs text-text-zweit sm:mt-1.5 sm:block">
-                          {t(u.haeufigkeit)}
-                        </span>
-                      </div>
+                    <li key={u.titel} className="grid gap-2 py-4 sm:grid-cols-[9rem_1fr] sm:gap-6">
+                      <Haeufigkeitsskala haeufigkeit={u.haeufigkeit} wort={t(u.haeufigkeit)} />
                       <div>
                         <p className="font-semibold">{u.titel}</p>
                         <p className="mt-1 max-w-[62ch] leading-relaxed text-text-zweit">
@@ -152,12 +141,13 @@ export async function ProblemKarte({ problem }: { problem: Problem }) {
                     hinweis={problem.pruefkostenHinweis ?? t("kostenPruefungHinweis")}
                   />
                   {problem.reparaturSpanne && (
-                    <Spannenachse
+                    <Spanne
                       label={t("kostenReparatur")}
                       von={problem.reparaturSpanne.von}
                       bis={problem.reparaturSpanne.bis}
                       einheit="€"
                       offen={Boolean(problem.spannenHinweis)}
+                      offenLabel={t("kostenReparaturHinweis")}
                     />
                   )}
                 </div>
@@ -170,7 +160,9 @@ export async function ProblemKarte({ problem }: { problem: Problem }) {
             </div>
 
             <section className="mt-12 border border-instrument bg-karte p-5 sm:p-6">
-              <h2 className="font-mono text-label tracking-[0.09em] uppercase">{t("grenze")}</h2>
+              <h2 className="font-mono text-label tracking-[0.09em] text-titel uppercase">
+                {t("grenze")}
+              </h2>
               <p className="mt-3 max-w-[62ch] text-lead leading-relaxed">{problem.grenze}</p>
             </section>
 
@@ -290,10 +282,10 @@ function Abschnitt({
 }) {
   return (
     <section>
-      <h2 className="font-mono text-label tracking-[0.09em] text-text-zweit uppercase">
-        {titel}
-        {zusatz && <span className="ml-2 normal-case opacity-80">{zusatz}</span>}
-      </h2>
+      {/* Der Zusatz steht auf eigener Zeile: inline gesetzt brach er auf
+          390px mitten im Label um und sah aus wie ein Fehler. */}
+      <h2 className="font-mono text-label tracking-[0.09em] text-titel uppercase">{titel}</h2>
+      {zusatz && <p className="mt-1 font-mono text-xs text-text-zweit">{zusatz}</p>}
       <div className="mt-4">{children}</div>
     </section>
   );

@@ -27,6 +27,7 @@ export const STUFEN_STIL = {
     rand: "border-sofort",
     voll: "bg-sofort",
     kanteUnten: "border-b-sofort",
+    band: "bg-sofort text-white",
   },
   bald: {
     text: "text-text",
@@ -34,6 +35,8 @@ export const STUFEN_STIL = {
     rand: "border-bald",
     voll: "bg-bald",
     kanteUnten: "border-b-bald",
+    /* Gelb trägt auf hellem Grund nur 2.04:1 — dunkler Text statt weißem. */
+    band: "bg-bald text-text",
   },
   planbar: {
     text: "text-planbar",
@@ -41,6 +44,7 @@ export const STUFEN_STIL = {
     rand: "border-planbar",
     voll: "bg-planbar",
     kanteUnten: "border-b-planbar",
+    band: "bg-planbar text-white",
   },
 } as const;
 
@@ -102,19 +106,20 @@ export function StufenBlock({
   const stil = STUFEN_STIL[stufe];
 
   return (
-    <div className={cn("border-l-4 p-5 sm:p-6", stil.feld, stil.rand)}>
-      <p className="flex items-center gap-2.5">
-        <StufenSymbol stufe={stufe} className="size-3.5" />
-        <span className={cn("font-semibold tracking-tight uppercase", stil.text)}>
-          {worte.wort}
-        </span>
-        <span className="font-mono text-label tracking-[0.09em] text-text-zweit uppercase">
+    <div className={cn("border-l-4", stil.rand, stil.feld)}>
+      {/* Das Urteil sitzt in einem kräftigen Band statt in einer großen
+          blassen Fläche: kleinere Farbfläche, stärkeres Signal — und die
+          Seite wirkt dadurch nicht mehr rosa. */}
+      <p className={cn("flex flex-wrap items-center gap-x-3 gap-y-1 px-5 py-3 sm:px-6", stil.band)}>
+        <StufenSymbol stufe={stufe} className="size-3.5 text-current" />
+        <span className="font-bold tracking-tight uppercase">{worte.wort}</span>
+        <span className="font-mono text-label tracking-[0.09em] uppercase opacity-80">
           {worte.weiterfahren}
         </span>
       </p>
-      <p className="mt-3 max-w-[60ch] leading-relaxed">{handlung}</p>
+      <p className="max-w-[60ch] px-5 pt-4 pb-5 leading-relaxed sm:px-6 sm:pb-6">{handlung}</p>
       {verschaerfung && (
-        <div className="mt-4 border-t border-black/10 pt-4">
+        <div className="mx-5 border-t border-black/10 pt-4 pb-5 sm:mx-6 sm:pb-6">
           <p className="font-mono text-label tracking-[0.09em] text-text-zweit uppercase">
             {t("verschaerfung")}
           </p>

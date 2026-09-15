@@ -6,8 +6,10 @@ import { cn } from "@/lib/cn";
  * Dringlichkeit. Ein roter Knopf würde diesen Kanal zerstören.
  */
 export const knopfStil = {
+  /* Der Akzent der Marke sitzt genau hier: auf der Haupthandlung. Dunkler
+     Text auf Orange, nicht weißer — Weiß läge bei 2.57:1. */
   haupt:
-    "inline-flex items-center justify-center gap-2 rounded-sm bg-instrument px-5 py-3 text-sm font-semibold text-text-auf-instrument transition-colors hover:bg-instrument-hell",
+    "inline-flex items-center justify-center gap-2 rounded-sm bg-akzent px-5 py-3 text-sm font-bold text-text transition-colors hover:bg-akzent-feld",
   zweit:
     "inline-flex items-center justify-center gap-2 rounded-sm border border-linie-stark bg-karte px-5 py-3 text-sm font-semibold text-text transition-colors hover:border-instrument",
   still:

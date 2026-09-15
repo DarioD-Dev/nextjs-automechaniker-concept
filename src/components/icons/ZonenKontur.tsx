@@ -49,7 +49,12 @@ export function ZonenKontur({ zone, className }: { zone: Zone; className?: strin
             Seite Dringlichkeit. Eine blau hervorgehobene Zone auf einer roten
             Karte hätte "alles in Ordnung" signalisiert — genau gegen die
             Kopfzeile darüber. Die Kontur zeigt einen Ort, keine Bewertung. */}
-        <g fill="var(--linie-fein)" stroke="var(--flaeche-instrument)" strokeWidth="1.2">
+        <g
+          fill="var(--zone)"
+          fillOpacity="0.45"
+          stroke="var(--flaeche-instrument)"
+          strokeWidth="1.4"
+        >
           {bereich.form}
         </g>
         <g fill="none" stroke="var(--linie-stark)" strokeWidth="1.6" strokeLinejoin="round">
@@ -59,7 +64,7 @@ export function ZonenKontur({ zone, className }: { zone: Zone; className?: strin
           <path d="M11.5 32h12M36.5 32h49M98.5 32h13" />
         </g>
       </svg>
-      <figcaption className="mt-2 font-mono text-label tracking-[0.09em] text-text-zweit uppercase">
+      <figcaption className="mt-2 font-mono text-label tracking-[0.09em] text-titel uppercase">
         {bereich.name}
       </figcaption>
     </figure>
