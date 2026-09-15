@@ -39,8 +39,8 @@ Vertikaler Schnitt: Gerüst, Designsystem, Finder, Datenmodell, **drei
 vollständig ausgearbeitete Problemkarten** (je eine pro Dringlichkeitsstufe),
 Vorbefund, Übergabe an die Terminanfrage.
 
-Offen: die restlichen neun Problemkarten, `/leistungen`, `/werkstatt`,
-`/konzept`, Rechtstexte, OG-Bilder je Karte.
+Offen: die restlichen neun Problemkarten, `/unfall`, `/leistungen` samt zwei
+Detailseiten, `/werkstatt`, `/konzept`, Rechtstexte, ein statisches OG-Bild.
 
 ## Entwickeln
 
