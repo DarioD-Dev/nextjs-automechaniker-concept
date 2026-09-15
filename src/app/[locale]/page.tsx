@@ -15,14 +15,44 @@ export default async function Startseite({ params }: PageProps<"/[locale]">) {
 
   return (
     <>
-      {/* Die Überschrift ist eine Frage, kein Werbeversprechen. Der Claim
-          ("Wir erklären, bevor wir schrauben.") steht im Kopf und im Fuß —
-          hier gehört der Platz der Frage, die der Besucher mitbringt.
-          Kein großes Autofoto: Er hat ein Auto, das weiß er. */}
-      <Container className="pt-12 pb-4 sm:pt-20">
-        <h1 className="max-w-[16ch] text-hero font-bold">{t("titel")}</h1>
-        <p className="mt-5 max-w-[56ch] text-lead text-text-zweit">{t("lead")}</p>
-      </Container>
+      {/* Der Einstieg ist bewusst ruhig: eine Frage, ein Satz, eine Handlung.
+          Die Informationsdichte beginnt erst darunter mit dem Finder — der
+          Besucher soll erst ankommen und dann arbeiten.
+
+          Keine Dringlichkeitsfarben hier: Rot, Gelb und Blau bedeuten den
+          Zustand eines Fahrzeugs. Über ein Fahrzeug, das wir nicht kennen,
+          sagen wir im Einstieg nichts. */}
+      <section className="flex min-h-[calc(100svh-4.25rem)] flex-col">
+        <Container className="flex flex-1 flex-col justify-center py-16 sm:py-24">
+          <p className="font-mono text-label tracking-[0.09em] text-titel uppercase">
+            {t("ortLabel")} {WERKSTATT.plz} {WERKSTATT.ort}
+          </p>
+
+          <h1 className="mt-6 max-w-[14ch] text-marke font-bold text-titel">{t("titel")}</h1>
+
+          <p className="mt-8 max-w-[48ch] text-lead leading-relaxed text-text-zweit">{t("lead")}</p>
+
+          {/* Genau eine Handlung. Sie führt nicht weg, sondern weiter: in den
+              Finder direkt darunter. */}
+          <a
+            href="#finder"
+            className="mt-10 inline-flex w-fit items-center gap-3 rounded-sm bg-akzent px-6 py-4 text-base font-bold text-text transition-colors hover:bg-akzent-feld"
+          >
+            {t("heroCta")}
+            <PfeilRechtsIcon className="size-5 rotate-90" />
+          </a>
+        </Container>
+
+        {/* Der Markensatz schließt den ersten Bildschirm ab und trennt ihn von
+            der Informationsebene darunter. */}
+        <div className="bg-instrument">
+          <Container className="py-4">
+            <p className="font-mono text-label tracking-[0.09em] text-text-auf-instrument uppercase">
+              {WERKSTATT.zeile}
+            </p>
+          </Container>
+        </div>
+      </section>
 
       <Container className="pb-abschnitt sm:pb-abschnitt-lg">
         <div className="mt-10">

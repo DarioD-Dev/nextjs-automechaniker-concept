@@ -44,7 +44,9 @@
     "ablaufTitel": "Von der Annahme bis zur Abholung",
     "menschenLabel": "Wer das macht",
     "menschenTitel": "Drei Menschen, keine Abteilung",
-    "zurWerkstatt": "Mehr über die Werkstatt"
+    "zurWerkstatt": "Mehr über die Werkstatt",
+    "ortLabel": "Kfz-Werkstatt in",
+    "heroCta": "Symptom auswählen"
   },
   "Problem": {
     "zurueck": "Alle Symptome",

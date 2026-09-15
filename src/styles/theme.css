@@ -35,6 +35,12 @@
   --text-hero--line-height: 1.05;
   --text-hero--letter-spacing: -0.03em;
 
+  /* Nur für den Einstiegsmoment der Startseite. --text-hero bleibt der
+     Seitentitel; ein Markenmoment braucht eine Stufe darüber. */
+  --text-marke: clamp(2.75rem, 1.6rem + 4.6vw, 5.5rem);
+  --text-marke--line-height: 0.98;
+  --text-marke--letter-spacing: -0.035em;
+
   --text-abschnitt: clamp(1.6rem, 1.3rem + 1.4vw, 2.2rem);
   --text-abschnitt--line-height: 1.15;
   --text-abschnitt--letter-spacing: -0.02em;
