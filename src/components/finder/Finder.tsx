@@ -31,7 +31,11 @@ export async function Finder() {
       <h2 className="text-abschnitt font-semibold">{t("leuchtenTitel")}</h2>
       <p className="mt-2 text-text-zweit">{t("leuchtenLegende")}</p>
 
-      <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      {/* Zwei oder vier Spalten, nie drei: Die Sortierung rot-vor-gelb trägt die
+          Legende darüber, und bei drei Spalten stünde eine rote Kachel in der
+          gelben Reihe. Bei geraden Spaltenzahlen bleiben die beiden Vierer-
+          gruppen auf jeder Breite geschlossen. */}
+      <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         {leuchten.map((problem) => (
           <li key={problem.kennung}>
             <LeuchtenKachel problem={problem} />
