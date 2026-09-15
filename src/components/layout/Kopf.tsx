@@ -30,6 +30,12 @@ export async function Kopf() {
           <a href={finder} className="text-sm font-medium hover:underline underline-offset-4">
             {t("navProblem")}
           </a>
+          <Link
+            href="/leistungen"
+            className="hidden text-sm font-medium underline-offset-4 hover:underline sm:inline"
+          >
+            {t("navLeistungen")}
+          </Link>
           {/* Immer sichtbar, auch auf dem Telefon: Bei echter Dringlichkeit
               schlägt ein Anruf jedes Formular — und wer ein Problem hat, steht
               mit genau diesem Gerät neben dem Auto. */}

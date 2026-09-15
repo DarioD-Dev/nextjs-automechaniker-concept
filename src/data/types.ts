@@ -1,3 +1,5 @@
+import type { LeistungsTitel } from "./leistungen";
+
 /** Die drei Dringlichkeitsstufen. Mehr gibt es nicht, und es kommen keine dazu. */
 export type Stufe = "sofort" | "bald" | "planbar";
 
@@ -57,7 +59,10 @@ export type Problem = {
   /** Was sich online NICHT beurteilen lässt. Für jede Karte eigens geschrieben.
    *  Ein Textbaustein an dieser Stelle bricht das ganze Versprechen der Seite. */
   grenze: string;
-  /** Die Brücke in die andere Informationswelt: Problem → Leistung. */
-  leistung: { titel: string; preis: string };
+  /** Die Brücke in die andere Informationswelt: Problem → Leistung.
+   *  Der Titel ist gegen den Leistungskatalog getypt — ein Verweis auf eine
+   *  Leistung, die es nicht gibt, bricht den Build, statt still ins Leere zu
+   *  führen. */
+  leistung: { titel: LeistungsTitel; preis: string };
   verwandt: readonly string[];
 };

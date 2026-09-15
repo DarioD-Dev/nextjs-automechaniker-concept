@@ -9,7 +9,8 @@
     "navTermin": "Termin",
     "telefonLabel": "Anrufen",
     "cta": "Termin anfragen",
-    "ctaKurz": "Termin"
+    "ctaKurz": "Termin",
+    "navLeistungen": "Leistungen"
   },
   "Start": {
     "titel": "Was ist mit Ihrem Auto?",
@@ -57,7 +58,6 @@
     "kostenReparaturHinweis": "je nach Ursache",
     "grenze": "Das können wir online nicht sagen",
     "leistung": "Passende Leistung",
-    "leistungHinweis": "Die Leistungsseiten entstehen im nächsten Bauabschnitt.",
     "verwandt": "Verwandte Beobachtungen",
     "nichtWeiterfahren": "Nicht weiterfahren",
     "rufenSieAn": "Rufen Sie uns an",
@@ -188,5 +188,40 @@
     "leistungPreis": "für Sie kostenlos, wenn wir den Schaden instand setzen",
     "ctaTermin": "Schaden melden",
     "ctaLead": "Bei einem fahrbereiten Fahrzeug genügt eine Anfrage. Steht das Fahrzeug, rufen Sie besser an."
+  },
+  "Leistungen": {
+    "titel": "Leistungen & Preise",
+    "lead": "Was Sie bei uns bestellen können, mit Preis und Dauer. Die meisten Werkstattseiten zeigen nur die Liste — wir zeigen auch, was es kostet, und wo wir es vorher nicht wissen können.",
+    "stufenLabel": "So lesen Sie die Preise",
+    "stufeFest": "Festpreis",
+    "stufeFestText": "Der Umfang steht fest. Der Preis auch.",
+    "stufeSpanne": "Preisspanne",
+    "stufeSpanneText": "Der Umfang hängt vom Fahrzeug ab — meist an den Teilepreisen, nicht an der Arbeit.",
+    "stufeNachBefund": "Nach Befund",
+    "stufeNachBefundText": "Erst prüfen, dann rechnen. Was wir ansetzen, sagen wir vor der Arbeit.",
+    "stufeKostenlos": "Kostenlos",
+    "stufeKostenlosText": "Kleine Prüfungen, die wir nicht verrechnen.",
+    "katalogLabel": "Der Katalog",
+    "mehrDazu": "Mehr dazu",
+    "zurUnfallseite": "Zur Unfallseite",
+    "zahlenLabel": "Zwei Zahlen und drei Zusagen",
+    "stundensatz": "Stundensatz",
+    "stundensatzText": "Ein Satz für alle Mechanikarbeiten. Keine Zuschläge für einzelne Tätigkeiten, keine Mindestverrechnung.",
+    "diagnose": "Diagnosepauschale",
+    "diagnoseText": "Eine halbe Stunde Arbeitszeit. Wird bei Beauftragung der Reparatur angerechnet.",
+    "fehlt": "Sie brauchen etwas, das hier nicht steht? Fragen Sie an — wir sagen Ihnen ehrlich, ob wir es machen oder wen wir Ihnen empfehlen.",
+    "detailZurueck": "Alle Leistungen",
+    "detailPreis": "Preis",
+    "detailDauer": "Dauer",
+    "detailWasEs": "Worum es geht",
+    "detailAblaufPickerl": "Was wir prüfen",
+    "detailAblaufDiagnose": "Wie wir vorgehen",
+    "detailEnthalten": "Enthalten",
+    "detailNichtEnthalten": "Nicht enthalten",
+    "detailDanach": "Was danach passiert",
+    "detailGrenze": "Das können wir vorher nicht sagen",
+    "detailRechtliches": "Fristen und Intervalle",
+    "detailVerwandt": "Führt hierher",
+    "detailTermin": "Termin anfragen"
   }
 }

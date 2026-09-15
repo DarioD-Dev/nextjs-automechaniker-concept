@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Haeufigkeit, Problem } from "@/data/types";
 import { findeProblem } from "@/data/probleme";
+import { findeLeistung } from "@/data/leistungen";
 import { PANNENHILFE } from "@/data/werkstatt";
 import { ProblemSymbol } from "@/components/icons/ProblemSymbol";
 import { ZonenKontur } from "@/components/icons/ZonenKontur";
@@ -157,10 +158,17 @@ export async function ProblemKarte({ problem }: { problem: Problem }) {
           <div className="space-y-2 border-t border-linie pt-6 text-sm">
             <p>
               <span className="text-text-zweit">{t("leistung")}: </span>
-              <span className="font-medium">{problem.leistung.titel}</span>{" "}
+              <Link
+                href={{
+                  pathname: "/leistungen",
+                  hash: findeLeistung(problem.leistung.titel).slug,
+                }}
+                className="font-medium underline decoration-linie-stark underline-offset-4 hover:decoration-instrument"
+              >
+                {problem.leistung.titel}
+              </Link>{" "}
               <span className="font-mono">{problem.leistung.preis}</span>
             </p>
-            <p className="text-text-zweit">{t("leistungHinweis")}</p>
             {problem.verwandt.length > 0 && (
               <p className="pt-2">
                 <span className="text-text-zweit">{t("verwandt")}: </span>
