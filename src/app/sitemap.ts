@@ -15,7 +15,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     })),
     { url: absoluteUrl("/unfall", locale), priority: 0.9 },
+    { url: absoluteUrl("/werkstatt", locale), priority: 0.8 },
     { url: absoluteUrl("/termin", locale), priority: 0.8 },
+    { url: absoluteUrl("/konzept", locale), priority: 0.5 },
+    { url: absoluteUrl("/impressum", locale), priority: 0.3 },
+    { url: absoluteUrl("/datenschutz", locale), priority: 0.3 },
     ...PROBLEME.map((problem) => ({
       url: absoluteUrl(
         { pathname: "/problem/[kennung]", params: { kennung: problem.kennung } },

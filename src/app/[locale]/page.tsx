@@ -3,7 +3,10 @@ import { assertLocale } from "@/i18n/locale";
 import { Container } from "@/components/ui/Container";
 import { Section, AbschnittsLabel } from "@/components/ui/Section";
 import { Finder } from "@/components/finder/Finder";
-import { WERKSTATT } from "@/data/werkstatt";
+import { ABLAUF, PERSONEN, WERKSTATT } from "@/data/werkstatt";
+import { findeLeistung } from "@/data/leistungen";
+import { Link } from "@/i18n/navigation";
+import { PfeilRechtsIcon } from "@/components/icons/UiIcons";
 
 export default async function Startseite({ params }: PageProps<"/[locale]">) {
   const locale = assertLocale((await params).locale);
@@ -27,9 +30,44 @@ export default async function Startseite({ params }: PageProps<"/[locale]">) {
         </div>
       </Container>
 
+      {/* Block 03 — bedient den planbaren Besucher in fünf Sekunden. Die
+          Einträge kommen aus dem Leistungskatalog, nicht aus einer zweiten
+          Preisliste: Zwei Wahrheiten über denselben Preis wären eine zu viel. */}
       <Section className="border-t border-linie bg-karte">
         <Container>
-          <AbschnittsLabel nummer="01">{t("grenzeLabel")}</AbschnittsLabel>
+          <AbschnittsLabel nummer="01">{t("festpreiseLabel")}</AbschnittsLabel>
+          <h2 className="mt-3 text-abschnitt font-semibold">{t("festpreiseTitel")}</h2>
+          <p className="mt-3 max-w-[56ch] text-lead text-text-zweit">{t("festpreiseLead")}</p>
+
+          <ul className="mt-8 grid gap-4 sm:grid-cols-3">
+            {(["§57a Pickerl", "Ölservice", "Reifenwechsel"] as const).map((titel) => {
+              const leistung = findeLeistung(titel);
+              return (
+                <li key={leistung.slug} className="border border-linie bg-grund p-5">
+                  <p className="font-semibold">{leistung.titel}</p>
+                  <p className="mt-2 font-mono text-2xl font-bold">{leistung.preis}</p>
+                  {leistung.dauer && (
+                    <p className="mt-0.5 font-mono text-xs text-text-zweit">{leistung.dauer}</p>
+                  )}
+                  <p className="mt-3 leading-relaxed text-text-zweit">{leistung.satz}</p>
+                </li>
+              );
+            })}
+          </ul>
+
+          <Link
+            href="/leistungen"
+            className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium underline decoration-linie-stark underline-offset-4 hover:decoration-instrument"
+          >
+            {t("alleLeistungen")}
+            <PfeilRechtsIcon className="size-4" />
+          </Link>
+        </Container>
+      </Section>
+
+      <Section className="border-t border-linie">
+        <Container>
+          <AbschnittsLabel nummer="02">{t("grenzeLabel")}</AbschnittsLabel>
           <h2 className="mt-3 max-w-[20ch] text-abschnitt font-semibold">{t("grenzeTitel")}</h2>
           <div className="mt-5 max-w-[62ch] space-y-4 text-lead leading-relaxed">
             <p>{t("grenzeAbsatz1")}</p>
@@ -38,9 +76,9 @@ export default async function Startseite({ params }: PageProps<"/[locale]">) {
         </Container>
       </Section>
 
-      <Section className="border-t border-linie">
+      <Section className="border-t border-linie bg-karte">
         <Container>
-          <AbschnittsLabel nummer="02">{t("preiseLabel")}</AbschnittsLabel>
+          <AbschnittsLabel nummer="03">{t("preiseLabel")}</AbschnittsLabel>
           <div className="mt-6 grid gap-6 sm:grid-cols-2">
             <ZahlenKarte
               titel={t("diagnoseTitel")}
@@ -67,6 +105,62 @@ export default async function Startseite({ params }: PageProps<"/[locale]">) {
               </li>
             ))}
           </ul>
+        </Container>
+      </Section>
+
+      {/* Block 06 — die drei Zusagen darüber werden hier konkret. Eine Zusage,
+          die im Ablauf keinen Ort hat, ist keine. */}
+      <Section className="border-t border-linie">
+        <Container>
+          <AbschnittsLabel nummer="04">{t("ablaufLabel")}</AbschnittsLabel>
+          <h2 className="mt-3 text-abschnitt font-semibold">{t("ablaufTitel")}</h2>
+
+          <ol className="mt-8 divide-y divide-linie border-y border-linie">
+            {ABLAUF.map((schritt) => (
+              <li
+                key={schritt.nummer}
+                className="grid gap-2 py-5 sm:grid-cols-[13rem_1fr] sm:gap-6"
+              >
+                <p className="font-mono text-label tracking-[0.09em] uppercase">
+                  {schritt.label} / {schritt.nummer}
+                </p>
+                <p className="max-w-[58ch] leading-relaxed">{schritt.text}</p>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </Section>
+
+      <Section className="border-t border-linie bg-karte">
+        <Container>
+          <AbschnittsLabel nummer="05">{t("menschenLabel")}</AbschnittsLabel>
+          <h2 className="mt-3 text-abschnitt font-semibold">{t("menschenTitel")}</h2>
+
+          <ul className="mt-8 grid gap-6 sm:grid-cols-3">
+            {PERSONEN.map((person) => (
+              <li key={person.name}>
+                <p
+                  aria-hidden="true"
+                  className="flex size-12 items-center justify-center rounded-full bg-instrument font-mono text-sm font-bold text-text-auf-instrument"
+                >
+                  {person.initialen}
+                </p>
+                <p className="mt-4 font-semibold">{person.name}</p>
+                <p className="mt-0.5 font-mono text-label tracking-[0.09em] text-text-zweit uppercase">
+                  {person.rolle}
+                </p>
+                <p className="mt-3 leading-relaxed text-text-zweit">{person.satz}</p>
+              </li>
+            ))}
+          </ul>
+
+          <Link
+            href="/werkstatt"
+            className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium underline decoration-linie-stark underline-offset-4 hover:decoration-instrument"
+          >
+            {t("zurWerkstatt")}
+            <PfeilRechtsIcon className="size-4" />
+          </Link>
         </Container>
       </Section>
     </>

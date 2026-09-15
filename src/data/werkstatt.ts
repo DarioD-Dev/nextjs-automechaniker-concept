@@ -34,3 +34,99 @@ export const PANNENHILFE = [
   { name: "ÖAMTC", nummer: "120" },
   { name: "ARBÖ", nummer: "123" },
 ] as const;
+
+/**
+ * Die Menschen. Namen und Zuständigkeiten sind erfunden — wie alles andere an
+ * KLARWERK auch, siehe /de/konzept.
+ *
+ * Bewusst KEINE Porträtfotos: Ein Stockfoto mit erfundenem Namen und
+ * erfundener Zuständigkeit wäre eine Behauptung über eine reale Person.
+ * Stattdessen Initialen. Das ist ehrlicher und nebenbei auch ruhiger.
+ */
+export const PERSONEN = [
+  {
+    name: "Marko D.",
+    initialen: "MD",
+    rolle: "Werkstattleitung und Annahme",
+    satz: "Nimmt die Fahrzeuge an und ruft Sie an, bevor irgendetwas repariert wird.",
+  },
+  {
+    name: "Elif K.",
+    initialen: "EK",
+    rolle: "Diagnose und Elektrik",
+    satz: "Liest aus, misst nach und schreibt den Befund, den Sie mitbekommen.",
+  },
+  {
+    name: "Thomas R.",
+    initialen: "TR",
+    rolle: "Begutachtung und Bremsen",
+    satz: "Macht die §57a-Begutachtung und geht jeden Punkt im Gutachten mit Ihnen durch.",
+  },
+] as const;
+
+/**
+ * Der Ablauf. Er ist zugleich die Stelle, an der die drei Zusagen von der
+ * Startseite konkret werden — eine Zusage, die im Prozess keinen Ort hat,
+ * ist keine.
+ */
+export const ABLAUF = [
+  {
+    nummer: "01",
+    label: "Annahme",
+    text: "Sie beschreiben, was Ihnen aufgefallen ist. Wir sehen uns das Fahrzeug an und sagen Ihnen, was wir prüfen wollen, wie lange das dauert und was es kostet — bevor wir anfangen.",
+  },
+  {
+    nummer: "02",
+    label: "Befund",
+    text: "Wir prüfen. Danach bekommen Sie einen Befund: was geprüft wurde, was gefunden wurde und was wir daraus schließen. Auf Papier, nicht zwischen Tür und Angel.",
+  },
+  {
+    nummer: "03",
+    label: "Freigabe",
+    text: "Sie entscheiden. Keine Arbeit ohne Ihre Freigabe. Stellt sich unterwegs heraus, dass es teurer wird als besprochen, rufen wir an — vorher, nicht mit der Rechnung.",
+  },
+  {
+    nummer: "04",
+    label: "Abholung",
+    text: "Wir gehen die Rechnung mit Ihnen durch, Position für Position. Alte Teile bekommen Sie auf Wunsch zurück.",
+  },
+] as const;
+
+/** Was tatsächlich in der Halle steht, ohne Superlative. Drei Geräte, die
+ *  einen Unterschied für den Kunden machen — und ein Satz darüber, was hier
+ *  NICHT steht. */
+export const AUSSTATTUNG = [
+  {
+    titel: "Mehrmarken-Diagnosegerät",
+    text: "Zugriff auf die Steuergeräte der gängigen Hersteller. Deshalb müssen Sie für das Auslesen nicht zur Markenvertretung.",
+  },
+  {
+    titel: "Rollenprüfstand für die Bremsprüfung",
+    text: "Misst Bremswirkung und Gleichmäßigkeit je Rad. Voraussetzung dafür, dass wir die §57a-Begutachtung überhaupt machen dürfen.",
+  },
+  {
+    titel: "Klimaservicegerät für R134a und R1234yf",
+    text: "Ältere und neuere Anlagen brauchen verschiedene Kältemittel und getrennte Geräte. Wir haben beide.",
+  },
+] as const;
+
+/** Was hier nicht steht. Eine Werkstatt, die Grenzen zugibt, wirkt
+ *  kompetenter, nicht schwächer. */
+export const NICHT_IM_HAUS =
+  "Karosserie und Lack machen wir nicht selbst. Dafür arbeiten wir mit einem Partnerbetrieb zusammen und bleiben Ihr Ansprechpartner. Oldtimer und Tuning machen wir gar nicht — dafür empfehlen wir Ihnen gerne jemanden.";
+
+/** Anfahrt. Ebenfalls erfunden. */
+export const ANFAHRT = [
+  {
+    art: "Öffentlich",
+    text: "U6 Niederhofstraße, sechs Minuten zu Fuß. Buslinie 63A hält direkt vor der Tür.",
+  },
+  {
+    art: "Mit dem Auto",
+    text: "Kurzparkzone. Für die Dauer eines Termins haben wir Plätze im Hof.",
+  },
+  {
+    art: "Schlüsselübergabe",
+    text: "Wenn es früher sein muss als 07:30: Briefkasten neben dem Tor, Formular liegt daneben.",
+  },
+] as const;

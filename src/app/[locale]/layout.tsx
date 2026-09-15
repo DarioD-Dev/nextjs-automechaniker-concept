@@ -27,6 +27,19 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
     // Konzeptstudie: darf in der Suche mit keiner echten Werkstatt konkurrieren.
     robots: { index: false, follow: false },
     alternates: buildAlternates("/", locale),
+    openGraph: {
+      type: "website",
+      siteName: "KLARWERK",
+      title: t("title"),
+      description: t("description"),
+      locale: "de_AT",
+      url: SITE_URL,
+      // Ausdrücklich gesetzt und nicht der automatischen Ergänzung überlassen:
+      // Next führt `openGraph` NICHT zusammen, sondern ersetzt es ganz. Jede
+      // Seite mit eigenem openGraph würde die Bildangabe sonst überschreiben.
+      images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630 }],
+    },
+    twitter: { card: "summary_large_image" },
   };
 }
 

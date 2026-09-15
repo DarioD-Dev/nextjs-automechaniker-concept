@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 import { Wordmark } from "./Wordmark";
 import { TelefonKnopf } from "./TelefonKnopf";
@@ -51,6 +52,24 @@ export async function Fuss() {
           <p className="mt-3 max-w-[60ch] text-sm leading-relaxed text-white/70">
             {t("pannenhilfeHinweis")} {PANNENHILFE.map((p) => `${p.name} ${p.nummer}`).join(", ")}.
           </p>
+
+          <nav aria-label={t("rechtliches")} className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+            {(
+              [
+                ["/konzept", t("konzept")],
+                ["/impressum", t("impressum")],
+                ["/datenschutz", t("datenschutz")],
+              ] as const
+            ).map(([href, label]) => (
+              <Link
+                key={href}
+                href={href}
+                className="text-sm text-white/85 underline decoration-white/30 underline-offset-4 hover:decoration-white"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
         </Container>
       </div>
     </footer>

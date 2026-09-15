@@ -3,10 +3,18 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin();
 
-// Bewusst leer, solange nichts gebraucht wird. Die Geschwisterprojekte tragen
-// hier `outputFileTracingIncludes` für die Schriftdateien der OG-Karte — das
-// kommt erst dazu, wenn `src/app/opengraph-image.tsx` existiert. Konfiguration
-// auf Verdacht ist die Art von Altlast, die niemand mehr zu entfernen wagt.
-const nextConfig: NextConfig = {};
+// `src/app/opengraph-image.tsx` liest die Schriftdateien über
+// readFile(join(process.cwd(), "assets/...")). Der Pfad entsteht zur Laufzeit,
+// die Dateiverfolgung des Builds erkennt ihn nicht zuverlässig und packt
+// `assets/` dann nicht ins Serverbündel.
+//
+// Die Folge wäre besonders unangenehm, weil sie lokal unsichtbar ist: Beim
+// `next start` liegt das Projektverzeichnis ohnehin richtig. Erst in der
+// Produktion fehlte die Datei — sichtbar dann, wenn jemand den Link teilt.
+const nextConfig: NextConfig = {
+  outputFileTracingIncludes: {
+    "/opengraph-image": ["./assets/**/*.woff"],
+  },
+};
 
 export default withNextIntl(nextConfig);

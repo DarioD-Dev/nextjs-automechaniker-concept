@@ -24,7 +24,11 @@ export const routing = defineRouting({
     "/leistungen": "/leistungen",
     "/leistungen/[slug]": "/leistungen/[slug]",
     "/unfall": "/unfall",
+    "/werkstatt": "/werkstatt",
     "/termin": "/termin",
+    "/konzept": "/konzept",
+    "/impressum": "/impressum",
+    "/datenschutz": "/datenschutz",
   },
 });
 

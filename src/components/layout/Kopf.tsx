@@ -36,6 +36,12 @@ export async function Kopf() {
           >
             {t("navLeistungen")}
           </Link>
+          <Link
+            href="/werkstatt"
+            className="hidden text-sm font-medium underline-offset-4 hover:underline lg:inline"
+          >
+            {t("navWerkstatt")}
+          </Link>
           {/* Immer sichtbar, auch auf dem Telefon: Bei echter Dringlichkeit
               schlägt ein Anruf jedes Formular — und wer ein Problem hat, steht
               mit genau diesem Gerät neben dem Auto. */}

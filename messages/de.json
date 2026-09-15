@@ -10,7 +10,8 @@
     "telefonLabel": "Anrufen",
     "cta": "Termin anfragen",
     "ctaKurz": "Termin",
-    "navLeistungen": "Leistungen"
+    "navLeistungen": "Leistungen",
+    "navWerkstatt": "Werkstatt"
   },
   "Start": {
     "titel": "Was ist mit Ihrem Auto?",
@@ -34,7 +35,16 @@
     "zusage2": "Wird es teurer als besprochen, rufen wir an — vorher.",
     "zusage3": "Alte Teile bekommen Sie auf Wunsch zurück.",
     "unfallTitel": "Es hat gekracht.",
-    "unfallLead": "Unfall, Parkschaden, Hagel — was jetzt zu tun ist und wer es zahlt."
+    "unfallLead": "Unfall, Parkschaden, Hagel — was jetzt zu tun ist und wer es zahlt.",
+    "festpreiseLabel": "Schnell erledigt",
+    "festpreiseTitel": "Drei Dinge mit festem Preis",
+    "festpreiseLead": "Wenn Sie wissen, was Sie brauchen, brauchen Sie keine Diagnose.",
+    "alleLeistungen": "Alle Leistungen und Preise",
+    "ablaufLabel": "So läuft es",
+    "ablaufTitel": "Von der Annahme bis zur Abholung",
+    "menschenLabel": "Wer das macht",
+    "menschenTitel": "Drei Menschen, keine Abteilung",
+    "zurWerkstatt": "Mehr über die Werkstatt"
   },
   "Problem": {
     "zurueck": "Alle Symptome",
@@ -132,7 +142,11 @@
     "adresse": "Adresse",
     "fiktionTitel": "Konzeptstudie",
     "fiktion": "KLARWERK ist eine fiktive Werkstatt. Diese Seite ist eine Konzeptstudie von Dario Dominković. Adresse, Preise, Personen, Öffnungszeiten und Telefonnummer sind erfunden.",
-    "pannenhilfeHinweis": "Die Notrufnummern von ÖAMTC und ARBÖ sind echt und richtig — ein Notruf wird nicht fiktionalisiert."
+    "pannenhilfeHinweis": "Die Notrufnummern von ÖAMTC und ARBÖ sind echt und richtig — ein Notruf wird nicht fiktionalisiert.",
+    "rechtliches": "Rechtliches",
+    "konzept": "Konzeptstudie: was daran erfunden ist",
+    "impressum": "Impressum",
+    "datenschutz": "Datenschutz"
   },
   "NichtGefunden": {
     "titel": "Diese Seite gibt es nicht",
@@ -223,5 +237,78 @@
     "detailRechtliches": "Fristen und Intervalle",
     "detailVerwandt": "Führt hierher",
     "detailTermin": "Termin anfragen"
+  },
+  "Werkstatt": {
+    "titel": "Die Werkstatt",
+    "lead": "Wer hier arbeitet, wie ein Auftrag abläuft, was in der Halle steht — und was nicht.",
+    "ablaufLabel": "Ablauf",
+    "ablaufTitel": "Was passiert, wenn Sie Ihr Auto bringen",
+    "ablaufLead": "Vier Schritte, immer dieselben. Die meiste Unsicherheit in einer Werkstatt kommt nicht von der Technik, sondern davon, dass niemand sagt, was als Nächstes passiert.",
+    "menschenLabel": "Die Menschen",
+    "menschenTitel": "Drei Menschen, keine Abteilung",
+    "menschenLead": "Sie erreichen die Person, die an Ihrem Fahrzeug gearbeitet hat — nicht eine Servicehotline, die Rückfragen weiterleitet.",
+    "menschenFiktion": "Namen und Zuständigkeiten sind erfunden. Porträtfotos gibt es bewusst keine: Ein Stockfoto mit erfundenem Namen wäre eine Behauptung über eine reale Person.",
+    "ausstattungLabel": "Ausstattung",
+    "ausstattungTitel": "Was in der Halle steht",
+    "ausstattungLead": "Drei Geräte, die für Sie einen Unterschied machen. Keine Liste, die beeindrucken soll.",
+    "nichtImHausTitel": "Was hier nicht steht",
+    "pruefstelleLabel": "Befugnis",
+    "pruefstelleTitel": "Ermächtigte Begutachtungsstelle",
+    "pruefstelleText": "KLARWERK ist ermächtigte Begutachtungsstelle nach § 57a KFG für Fahrzeuge bis 3,5 Tonnen.",
+    "pruefstelleWarum": "Das ist kein Siegel, das man kaufen kann, sondern eine behördliche Ermächtigung mit Auflagen: Ausstattung, Ausbildung der Prüfer und regelmäßige Kontrolle. Damit wäre sie einer der wenigen Belege auf dieser Seite, den man tatsächlich nachprüfen könnte — wenn es die Werkstatt gäbe.",
+    "pruefstelleLink": "Was beim Pickerl geprüft wird",
+    "anfahrtLabel": "Anfahrt",
+    "anfahrtTitel": "Wo wir sind",
+    "oeffnungszeiten": "Öffnungszeiten",
+    "adresse": "Adresse",
+    "fiktionHinweis": "Adresse, Öffnungszeiten, Personen, Ausstattung und die Begutachtungs-Ermächtigung sind für diese Konzeptstudie erfunden.",
+    "zumKonzept": "Was daran erfunden ist"
+  },
+  "Konzept": {
+    "titel": "Was an KLARWERK echt ist",
+    "lead": "KLARWERK ist eine fiktive Werkstatt. Es gibt sie nicht, und es hat sie nie gegeben. Diese Seite sagt, welche Angaben erfunden sind und welche nicht — damit niemand auf Grundlage einer Konzeptstudie eine Entscheidung trifft.",
+    "wasLabel": "Worum es geht",
+    "wasTitel": "Eine Konzeptstudie, keine Kundenseite",
+    "wasText1": "KLARWERK ist eine von fünf Branchendemos, mit denen Dario Dominković zeigt, wie eine Website für ein bestimmtes Gewerbe aussehen kann. Die Leitfrage war nicht, wie eine Werkstattseite hübsch wird, sondern wie sie einem Menschen mit einem Autoproblem möglichst schnell die beste verfügbare Orientierung gibt.",
+    "wasText2": "Deshalb steht hier mehr Text als auf den meisten Werkstattseiten und weniger Bild. Der Inhalt ist das Produkt.",
+    "erfundenLabel": "Erfunden",
+    "erfundenTitel": "Diese Angaben sind frei erfunden",
+    "echtLabel": "Echt",
+    "echtTitel": "Diese Angaben sind echt und geprüft",
+    "funktioniertLabel": "Attrappe",
+    "funktioniertTitel": "Was hier absichtlich nicht funktioniert",
+    "preiseTitel": "Woher die Preise kommen",
+    "preiseText": "Die Beträge sind erfunden, aber nicht geraten. Sie orientieren sich an den veröffentlichten Preisen realer Wiener Werkstätten, damit die Demo für jemanden aus der Branche nicht sofort unglaubwürdig wirkt. Es sind trotzdem keine Preise, zu denen irgendjemand irgendetwas anbietet.",
+    "keineBeratungTitel": "Und das Wichtigste",
+    "keineBeratung": "Nichts auf dieser Seite ist eine Rechtsauskunft, eine Ferndiagnose oder ein Angebot. Wenn Ihr Auto ein Problem hat, gehen Sie damit zu einer echten Werkstatt."
+  },
+  "Impressum": {
+    "titel": "Impressum",
+    "lead": "Diese Seite hat keinen Betreiber im Sinne eines Unternehmens — es gibt kein KLARWERK.",
+    "verantwortlichTitel": "Verantwortlich für den Inhalt",
+    "verantwortlichText": "Dario Dominković. KLARWERK ist eine unentgeltliche Konzeptstudie ohne geschäftlichen Zweck, Teil einer Reihe von Branchendemos. Kontakt über das Portfolio, aus dem heraus diese Demo verlinkt ist.",
+    "keineFirmaTitel": "Keine erfundenen Unternehmensdaten",
+    "keineFirmaText": "Hier stehen bewusst keine Firmenbuchnummer, keine UID, keine Gewerbeberechtigung und keine Kammerzugehörigkeit. Solche Angaben zu erfinden wäre genau die Art von Attrappe, die dieses Projekt vermeidet. Die im Fuß genannte Adresse und Telefonnummer gehören zur fiktiven Werkstatt und zu niemandem sonst.",
+    "echtbetriebTitel": "Was hier bei einem echten Betrieb stünde",
+    "echtbetriebText": "Ein tatsächlich betriebener Werkstattauftritt braucht an dieser Stelle die vollständigen Angaben nach dem E-Commerce-Gesetz und dem Mediengesetz: Firmenwortlaut, Rechtsform, Sitz, Firmenbuchnummer und Gericht, UID, Gewerbe, Behörde, Kammer und die anwendbaren Vorschriften. Das lässt sich nicht sinnvoll simulieren, und ein halbes Impressum wäre schlechter als ein ehrlicher Hinweis.",
+    "inhalteTitel": "Inhalte",
+    "inhalteText": "Alle Symbole und Zeichnungen auf dieser Seite sind selbst erstellt. Die Schriften Inter und JetBrains Mono stehen unter der SIL Open Font License 1.1 und werden von dieser Seite selbst ausgeliefert."
+  },
+  "Datenschutz": {
+    "titel": "Datenschutz",
+    "lead": "Kurz: Diese Seite sammelt nichts. Das ist keine Absichtserklärung, sondern eine Beschreibung dessen, was technisch vorhanden ist.",
+    "nichtsTitel": "Was hier nicht passiert",
+    "vorbefundTitel": "Der Vorbefund",
+    "vorbefundText": "Die Beobachtungen, die Sie sammeln, liegen im sessionStorage Ihres Browsers — dem Speicher, der beim Schließen des Tabs verfällt. Abgelegt werden nur Kennungen wie „motorkontrollleuchte“, nichts über Sie und nichts über Ihr Fahrzeug. Diese Angaben verlassen Ihr Gerät nicht und erreichen keinen Server.",
+    "formularTitel": "Das Anfrageformular",
+    "formularText": "Ihre Eingaben werden an den Server geschickt, dort geprüft und unmittelbar wieder verworfen. Es gibt keinen Mailversand, keine Datenbank und keine Weitergabe. Die Bestätigung sagt das ausdrücklich, statt einen Eingang zu suggerieren.",
+    "hostingTitel": "Hosting",
+    "hostingText": "Die Seite liegt bei Vercel. Wie jeder Webserver verarbeitet auch dieser beim Abruf technisch notwendige Verbindungsdaten, darunter Ihre IP-Adresse. Darauf haben wir keinen Einfluss und darüber hinaus keinen Zugriff.",
+    "schriftenTitel": "Schriften und externe Inhalte",
+    "schriftenText": "Die Schriften liefert diese Seite selbst aus. Es gibt keine Karteneinbettung, kein Video, keine Social-Media-Bausteine und keine Inhalte von Dritten — Ihr Browser baut zu niemandem sonst eine Verbindung auf.",
+    "rechteTitel": "Ihre Rechte",
+    "rechteText": "Die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch nach der DSGVO bestehen unabhängig von dieser Seite. Praktisch gibt es hier nichts, worüber Auskunft zu erteilen oder was zu löschen wäre, weil nichts gespeichert wird.",
+    "echtbetriebTitel": "Was hier bei einem echten Betrieb stünde",
+    "echtbetriebText": "Sobald ein Formular tatsächlich zustellt, Termine gespeichert werden oder Reichweitenmessung dazukommt, braucht es an dieser Stelle die vollständige Information nach Artikel 13 DSGVO: Verantwortlicher, Zwecke, Rechtsgrundlagen, Empfänger, Speicherdauer, Auftragsverarbeiter und Aufsichtsbehörde. Diese Demo verarbeitet nichts davon und behauptet es deshalb auch nicht."
   }
 }
