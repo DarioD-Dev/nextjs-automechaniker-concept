@@ -1,0 +1,54 @@
+/* ─── Schicht 1: Grundwerte. Nie direkt in einer Komponente benutzen. ─── */
+:root {
+  /* Fläche und Struktur — das ganze Gerüst der Seite ist unbunt.
+     Das ist keine Geschmacksentscheidung, sondern die Voraussetzung dafür,
+     dass die drei Signalfarben unten überhaupt etwas bedeuten können. */
+  --kw-papier: #fafaf8; /* Seitengrund, minimal warmes Papierweiß */
+  --kw-weiss: #ffffff; /* Karten, erhöhte Flächen */
+  --kw-graphit: #101418; /* Fließtext, Überschriften — 17.5:1 auf Papier */
+  --kw-grau-600: #4a5259; /* Sekundärtext — 7.5:1 auf Papier */
+  --kw-grau-300: #9aa1a6; /* nur Symbole und Trennendes, nie Text */
+  --kw-linie: #e2e4e0; /* Haarlinien */
+  --kw-instrument: #1b2a33; /* Kopf, Fuß, Vorbefund, Hauptknopf — 14:1 */
+  --kw-instrument-hell: #2d414d; /* Hover auf Instrumentflächen */
+
+  /* ─── Der Signalkanal. Reserviert. ───
+     Rot–Gelb–Blau ist die Sprache, die das Armaturenbrett bereits spricht.
+     Jeder Autofahrer beherrscht sie ohne Erklärung. Genau deshalb konnte
+     Orange keine Markenfarbe werden: der Kanal muss frei bleiben.
+
+     Gelb #e0a200 hat auf Weiß nur 2.16:1 — es ist ausschließlich Fläche,
+     Rahmen und Symbolfarbe, NIEMALS Text. Text auf gelbem Feld ist Graphit. */
+  --kw-rot: #c4262e; /* 5.56:1 auf Papier — als Text zulässig */
+  --kw-rot-feld: #fdf2f1;
+  --kw-gelb: #e0a200; /* 2.16:1 — NUR Fläche/Rahmen/Symbol */
+  --kw-gelb-feld: #fdf6e3;
+  --kw-blau: #2c6e9b; /* 5.43:1 auf Papier — als Text zulässig */
+  --kw-blau-feld: #eef4f9;
+}
+
+/* ─── Schicht 2: Bedeutung. ─── */
+:root {
+  --flaeche-grund: var(--kw-papier);
+  --flaeche-karte: var(--kw-weiss);
+  --flaeche-instrument: var(--kw-instrument);
+
+  --text-haupt: var(--kw-graphit);
+  --text-zweit: var(--kw-grau-600);
+  --text-auf-instrument: var(--kw-papier);
+
+  --linie-fein: var(--kw-linie);
+  --linie-stark: var(--kw-grau-300);
+
+  /* Dringlichkeit. Die einzigen drei Stellen im Projekt, an denen die
+     Signalfarben auftauchen dürfen. Links sind Graphit mit Unterstreichung,
+     der Hauptknopf ist Instrument — kein Blau, Blau ist vergeben. */
+  --stufe-sofort: var(--kw-rot);
+  --stufe-sofort-feld: var(--kw-rot-feld);
+  --stufe-bald: var(--kw-gelb);
+  --stufe-bald-feld: var(--kw-gelb-feld);
+  --stufe-planbar: var(--kw-blau);
+  --stufe-planbar-feld: var(--kw-blau-feld);
+
+  --fokus-ring: var(--kw-instrument);
+}

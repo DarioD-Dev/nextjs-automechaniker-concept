@@ -1,0 +1,137 @@
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./theme.css";
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: var(--flaeche-grund);
+  color: var(--text-haupt);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  /* Preise, Dauern und Telefonnummern stehen überall in Tabellen und Listen
+     untereinander. Ohne Tabellenziffern tanzen sie um bis zu einer halben
+     Ziffernbreite — auf einer Seite, deren Versprechen "nachvollziehbare
+     Zahlen" ist, fällt genau das auf. */
+  font-variant-numeric: tabular-nums;
+}
+
+/* Der Vorbefund liegt über dem Seitenende. Nur wenn er tatsächlich da ist,
+   bekommt die Seite unten Platz — sonst stünde auf jeder Seite ein leerer
+   Streifen, den niemand erklären könnte. */
+body.hat-vorbefund {
+  padding-bottom: 4.5rem;
+}
+
+/* Deutsche Komposita sind hier der Normalfall, nicht die Ausnahme:
+   "Motorkontrollleuchte" ist bei --text-hero rund 380px breit und damit auf
+   einem 390px-Gerät ein einziges, unteilbares Wort, das jede Flex- oder
+   Gitterzelle sprengt (Vorgabewert min-width:auto). `hyphens` trennt, wo der
+   Browser ein Wörterbuch hat, `overflow-wrap` fängt den Rest ab. Beides
+   zusammen, weil kein Teil allein zuverlässig ist. */
+h1,
+h2,
+h3 {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+button:not(:disabled),
+[role="button"],
+summary {
+  cursor: pointer;
+}
+
+/* Ein Fokusring für die ganze Seite, einmal an der Wurzel. */
+:focus-visible {
+  outline: 2px solid var(--fokus-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ─── Der Selbsttest ───
+   Beim Laden leuchten die Warnleuchten gemeinsam auf und gehen wieder aus —
+   genau das, was jedes Armaturenbrett beim Drehen des Zündschlüssels tut.
+   Es erklärt das Raster ohne ein Wort, und jeder Autofahrer versteht es sofort.
+
+   Bewusst reines CSS, ohne sessionStorage: ein Auto macht den Selbsttest bei
+   JEDEM Start, nicht einmal pro Sitzung. Das ist zugleich das ehrlichere
+   Verhalten und spart eine Client-Komponente. Die Kachelfläche flackert, das
+   Symbol behält seine echte Leuchtenfarbe — sonst wäre die Wiedererkennung
+   dahin, und die ist der ganze Zweck des Rasters. */
+@keyframes kw-selbsttest {
+  0%,
+  55% {
+    background-color: var(--selbsttest-feld);
+    border-color: var(--selbsttest-farbe);
+  }
+  100% {
+    background-color: var(--flaeche-karte);
+    border-color: var(--linie-fein);
+  }
+}
+
+.kw-selbsttest {
+  animation: kw-selbsttest 900ms ease-out both;
+}
+
+/* Honoriert die Systemeinstellung auch dort, wo eine Komponente ihre eigene
+   motion-reduce-Variante vergessen hat. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Das Auf- und Zuklappen des Vorbefunds läuft bewusst über eine eigene Regel
+   statt über das hidden-Attribut.
+   Grund: Tailwind setzt in @layer base ein
+   `[hidden]:where(:not([hidden="until-found"])) { display: none !important }`.
+   Bei !important-Deklarationen ist die Reihenfolge der Layer UMGEKEHRT —
+   ungeschichtete Regeln verlieren dann gegen geschichtete, unabhängig von der
+   Spezifität. Die Druckregel unten hätte das hidden-Attribut also nie
+   übersteuern können, und der Ausdruck wäre leer geblieben. */
+.kw-vorbefund-inhalt {
+  display: none;
+}
+
+.kw-vorbefund-inhalt[data-offen="true"] {
+  display: block;
+}
+
+/* ─── Druck ───
+   Der Vorbefund ist das einzige, was gedruckt werden soll. Er steht als
+   direktes Kind von <body> im Baum, damit dieser Selektor ohne Klimmzüge
+   funktioniert. Der Inhalt wird im Ausdruck immer entfaltet, auch wenn er am
+   Bildschirm eingeklappt ist — sonst druckt man ein leeres Blatt. */
+@media print {
+  body > *:not(.kw-vorbefund-wurzel) {
+    display: none !important;
+  }
+
+  .kw-vorbefund-wurzel {
+    position: static !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  .kw-vorbefund-inhalt {
+    display: block !important;
+  }
+
+  .kw-nicht-drucken {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+  }
+}
