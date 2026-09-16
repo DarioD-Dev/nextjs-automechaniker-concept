@@ -33,17 +33,25 @@ export function TelefonKnopf({
 
   const stil =
     variante === "instrument"
-      ? "inline-flex items-center gap-2 text-sm font-semibold text-text-auf-instrument underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-white"
+      ? "-my-1.5 inline-flex items-center gap-2 py-1.5 text-sm font-semibold text-text-auf-instrument underline decoration-white/30 underline-offset-4 transition-colors hover:text-white hover:decoration-white"
       : knopf(variante);
 
   return (
     <>
       <button
         type="button"
-        className={cn(stil, className)}
+        /* In der Kopfzeile bleibt am Telefon nur das Symbol sichtbar — 16×16
+           Trefferfläche für die Nummer, die man im Notfall trifft. Die
+           negativen Außenabstände halten die Leiste dabei auf ihrer Höhe. */
+        className={cn(
+          "group",
+          stil,
+          kompakt && "max-sm:-m-2.5 max-sm:size-11 max-sm:justify-center",
+          className,
+        )}
         onClick={() => dialog.current?.showModal()}
       >
-        <TelefonIcon className="size-4 shrink-0" />
+        <TelefonIcon className="kw-hoerer size-4 shrink-0" />
         <span className={cn("font-mono tracking-tight", kompakt && "max-sm:sr-only")}>
           {WERKSTATT.telefonAnzeige}
         </span>

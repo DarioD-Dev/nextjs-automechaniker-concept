@@ -30,11 +30,17 @@ body.hat-vorbefund {
    Gitterzelle sprengt (Vorgabewert min-width:auto). `hyphens` trennt, wo der
    Browser ein Wörterbuch hat, `overflow-wrap` fängt den Rest ab. Beides
    zusammen, weil kein Teil allein zuverlässig ist. */
-h1,
-h2,
-h3 {
-  overflow-wrap: break-word;
-  hyphens: auto;
+/* In @layer base, NICHT ungeschichtet: Ungeschichtete Regeln gewinnen gegen
+   jede Tailwind-Utility. Die Folge war, dass `hyphens-none` auf der Hero-
+   Überschrift wirkungslos blieb und „Ih-rem Auto?" getrennt wurde. Innerhalb
+   von base greift die normale Reihenfolge, und Utilities gewinnen wieder. */
+@layer base {
+  h1,
+  h2,
+  h3 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
 }
 
 button:not(:disabled),
@@ -72,8 +78,13 @@ summary {
   }
 }
 
+/* Ohne fill-mode: Mit `both` hielt die Animation ihren Endzustand für
+   border-color und background-color dauerhaft fest — und eine laufende
+   Animation schlägt jede normale Deklaration. Der Hover der Kachel war
+   dadurch wirkungslos. Der 100%-Zustand ist ohnehin identisch mit den
+   statischen Klassen, es springt also nichts. */
 .kw-selbsttest {
-  animation: kw-selbsttest 900ms ease-out both;
+  animation: kw-selbsttest 900ms ease-out;
 }
 
 /* Honoriert die Systemeinstellung auch dort, wo eine Komponente ihre eigene
@@ -133,5 +144,270 @@ summary {
 
   body {
     background: #fff !important;
+  }
+}
+
+/* ─── Die Prozesskette ───
+   Vier Stationen auf einer durchgehenden Linie. Die Linie ist hier nicht
+   Dekoration neben der Information, sie IST die Information: Sie sagt, dass
+   die Schritte zusammenhängen und in welcher Richtung.
+
+   Sie liegt als ::before auf der Station selbst statt als Rahmen der Zelle.
+   Grund: Nur so lässt sie sich beim Hereinscrollen aufbauen, ohne dass der
+   Text mitspringt — eine animierte Rahmenbreite verschiebt das Layout, eine
+   skalierte Fläche nicht. Die Stationen grenzen dabei ohne Gap aneinander;
+   mit Gap zerfiele die Linie in vier Striche und wäre wieder eine Liste. */
+.kw-kette > li {
+  position: relative;
+}
+
+.kw-kette > li::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 1px;
+  background: var(--linie-stark);
+  transform-origin: center top;
+  transition: background-color 200ms ease-out;
+}
+
+.kw-marke {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 0.625rem;
+  height: 0.625rem;
+  transform: translateX(-50%);
+  transition: scale 200ms ease-out;
+}
+
+/* Ab Tablet kippt die Kette in die Waagerechte. */
+@media (min-width: 48rem) {
+  .kw-kette > li::before {
+    inset: 0 0 auto 0;
+    width: auto;
+    height: 1px;
+    transform-origin: left center;
+  }
+
+  .kw-marke {
+    transform: translateY(-50%);
+  }
+}
+
+/* Beim Überfahren tritt der Schritt hervor: seine Strecke der Linie wird
+   dunkler, seine Marke etwas größer. Nur dieser eine Abschnitt der Kette —
+   dadurch zeigt der Effekt, wie weit ein Schritt reicht.
+
+   In @media (hover: hover), weil ein Schritt kein Link ist: Auf einem
+   Touchgerät bliebe der Zustand nach einer Berührung hängen und behauptete
+   eine Auswahl, die es nicht gibt. Tailwind schichtet seine hover-Utilities
+   von sich aus so ein; diese Regel hier muss es selbst tun. */
+@media (hover: hover) {
+  .kw-kette > li:hover::before {
+    background: var(--text-titel);
+  }
+
+  .kw-kette > li:hover .kw-marke {
+    scale: 1.5;
+  }
+}
+
+/* ─── Eintritt ───
+   Zwei Klassen, mehr nicht: ein Block, der leicht von unten kommt, und eine
+   Reihe, deren Glieder knapp nacheinander folgen. Bewusst ohne JavaScript und
+   ohne Beobachter — `animation-timeline: view()` erledigt das im Browser.
+
+   Wo es das nicht gibt (derzeit Safari und Firefox), greift @supports nicht
+   und es wird schlicht der Endzustand gerendert. Deshalb liegt der Bereich
+   auch früh: Er ist abgeschlossen, lange bevor ein Block vollständig im Bild
+   steht. Ein Element, das erst bei „vollständig sichtbar" fertig würde,
+   bliebe am Seitenende halb eingeblendet stehen. */
+@keyframes kw-auf {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes kw-linie-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes kw-linie-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .kw-auf,
+    .kw-auf-reihe > * {
+      animation: kw-auf 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+
+    .kw-auf-reihe > *:nth-child(2) {
+      animation-range: entry 8% entry 68%;
+    }
+
+    .kw-auf-reihe > *:nth-child(3) {
+      animation-range: entry 16% entry 76%;
+    }
+
+    .kw-auf-reihe > *:nth-child(4) {
+      animation-range: entry 24% entry 84%;
+    }
+
+    /* Die Kette baut sich Station für Station auf: erst die Strecke, dann
+       der Text darunter. */
+    .kw-kette > li {
+      animation: kw-auf 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 6% entry 62%;
+    }
+
+    .kw-kette > li::before {
+      animation: kw-linie-y 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 50%;
+    }
+
+    .kw-kette > li:nth-child(2) {
+      animation-range: entry 14% entry 70%;
+    }
+
+    .kw-kette > li:nth-child(3) {
+      animation-range: entry 22% entry 78%;
+    }
+
+    .kw-kette > li:nth-child(4) {
+      animation-range: entry 30% entry 86%;
+    }
+
+    @media (min-width: 48rem) {
+      .kw-kette > li::before {
+        animation-name: kw-linie-x;
+      }
+    }
+  }
+}
+
+/* ─── Der Pfeil im Knopf ───
+   Beim Überfahren läuft der Pfeil einmal in seine Richtung aus dem Knopf und
+   von der Gegenseite wieder herein. Das ist die Richtung, in die der Knopf
+   führt — nach unten in den Finder, nach rechts auf die nächste Seite —,
+   einmal vorgeführt statt nur angedeutet.
+
+   Kein Ein- und Ausblenden: Der Schacht schneidet den Pfeil ohnehin ab, und
+   eine zusätzliche Deckkraftkurve ließ ihn länger verschwunden wirken, als er
+   unterwegs war. Es bleibt eine reine Bewegung über 300ms.
+
+   Animiert wird die Einzeleigenschaft `translate`, nicht `transform`: Der
+   Pfeil nach unten ist ein um 90 Grad gedrehter Rechtspfeil, und `transform`
+   würde nach der Drehung wirken — der Pfeil liefe seitlich aus dem Knopf
+   statt nach unten. `translate` wirkt davor.
+
+   Nur auf Geräten mit Zeiger: Auf einem Touchgerät gibt es kein Überfahren,
+   und ein hängengebliebener Zustand nach dem Antippen wäre eine Behauptung. */
+.kw-pfeil-schacht {
+  display: inline-flex;
+  overflow: hidden;
+}
+
+@keyframes kw-pfeil-ab {
+  0% {
+    translate: 0 0;
+  }
+  45% {
+    translate: 0 130%;
+  }
+  46% {
+    translate: 0 -130%;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+@keyframes kw-pfeil-quer {
+  0% {
+    translate: 0 0;
+  }
+  45% {
+    translate: 130% 0;
+  }
+  46% {
+    translate: -130% 0;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+/* Der Zurück-Pfeil ist derselbe Rechtspfeil um 180 Grad gedreht. Er läuft
+   deshalb in die andere Richtung — nach links hinaus, von rechts herein. */
+@keyframes kw-pfeil-zurueck {
+  0% {
+    translate: 0 0;
+  }
+  45% {
+    translate: -130% 0;
+  }
+  46% {
+    translate: 130% 0;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+/* Der Telefonhörer kippt beim Überfahren einmal an und zurück — die
+   Bewegung des Abhebens, einmal angedeutet. Kein Klingeln, kein Wackeln:
+   eine Hinbewegung, eine Rückbewegung, fertig. */
+@keyframes kw-hoerer {
+  0% {
+    rotate: 0deg;
+  }
+  40% {
+    rotate: -18deg;
+  }
+  100% {
+    rotate: 0deg;
+  }
+}
+
+@media (hover: hover) {
+  @media (prefers-reduced-motion: no-preference) {
+    .group:hover .kw-hoerer {
+      animation: kw-hoerer 340ms ease-in-out;
+    }
+
+    .group:hover .kw-pfeil-ab {
+      animation: kw-pfeil-ab 300ms ease-in-out;
+    }
+
+    .group:hover .kw-pfeil-quer {
+      animation: kw-pfeil-quer 300ms ease-in-out;
+    }
+
+    .group:hover .kw-pfeil-zurueck {
+      animation: kw-pfeil-zurueck 300ms ease-in-out;
+    }
   }
 }

@@ -10,6 +10,8 @@ import { buildAlternates } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { knopf } from "@/components/ui/Knopf";
 import { PfeilRechtsIcon, HakenIcon, KreuzIcon } from "@/components/icons/UiIcons";
+import { Preis } from "@/components/ui/Preis";
+import { cn } from "@/lib/cn";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -53,25 +55,30 @@ export default async function LeistungsDetailSeite({
       <Container className="max-w-[56rem] pt-8 pb-8 sm:pt-12">
         <Link
           href="/leistungen"
-          className="font-mono text-label tracking-[0.09em] text-text-zweit uppercase underline decoration-linie-stark underline-offset-4 hover:decoration-instrument"
+          className="-my-1.5 inline-block py-1.5 font-mono text-label tracking-[0.09em] text-text-zweit uppercase underline decoration-linie-stark underline-offset-4 transition-colors hover:text-titel hover:decoration-instrument"
         >
           ← {t("detailZurueck")}
         </Link>
 
         <h1 className="mt-5 text-hero font-bold">{detail.titel}</h1>
 
-        <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-3 border-y border-linie py-4">
+        {/* Auf einer Detailseite gibt es genau einen Preis und genau eine
+            Dauer. Hier ist die große Zahl richtig — anders als in der Tafel,
+            wo zwölf davon untereinander stünden. */}
+        <dl className="mt-6 flex flex-wrap gap-x-12 gap-y-4 border-y border-linie py-6">
           <div>
             <dt className="font-mono text-label tracking-[0.09em] text-text-zweit uppercase">
               {t("detailPreis")}
             </dt>
-            <dd className="mt-1 font-mono text-2xl font-bold">{detail.preis}</dd>
+            <dd className="mt-3 leading-none">
+              <Preis preis={detail.preis} className="text-zahl" />
+            </dd>
           </div>
           <div>
             <dt className="font-mono text-label tracking-[0.09em] text-text-zweit uppercase">
               {t("detailDauer")}
             </dt>
-            <dd className="mt-1 font-mono text-2xl">{detail.dauer}</dd>
+            <dd className="mt-3 font-mono text-block text-text-zweit">{detail.dauer}</dd>
           </div>
         </dl>
 
@@ -140,12 +147,67 @@ export default async function LeistungsDetailSeite({
               <h2 className="font-mono text-label tracking-[0.09em] text-text-zweit uppercase">
                 {t("detailRechtliches")}
               </h2>
-              <div className="mt-4 max-w-[64ch] space-y-3 leading-relaxed">
-                {detail.rechtliches.absaetze.map((absatz) => (
-                  <p key={absatz}>{absatz}</p>
+              {/* Gegenüberstellung statt drei Absätze: Die Frage ist immer
+                  „was gilt bei mir", und die Antwort hängt an einem Datum.
+                  Nebeneinander sieht man den Unterschied, ohne ihn selbst
+                  aus dem Text herauszusuchen. Die beiden Intervallfolgen
+                  sind die Anker — deshalb groß und einstellig lesbar. */}
+              <div className="mt-5 border-t border-linie-stark">
+                {/* Auf dem Telefon beschriftet jede Zelle sich selbst — ein Spaltenkopf
+                    über einer einspaltigen Liste wäre dieselbe Angabe zweimal. */}
+                <div className="hidden gap-x-8 border-b border-linie py-3 sm:grid sm:grid-cols-[9rem_1fr_1fr]">
+                  <p className="hidden sm:block" />
+                  {detail.rechtliches.spalten.map((spalte, i) => (
+                    <p
+                      key={spalte}
+                      className={cn(
+                        "font-mono text-label tracking-[0.09em] uppercase",
+                        i === 0 ? "text-text-zweit" : "font-bold text-titel",
+                      )}
+                    >
+                      {spalte}
+                    </p>
+                  ))}
+                </div>
+
+                {detail.rechtliches.zeilen.map((zeile) => (
+                  <div
+                    key={zeile.merkmal}
+                    className="grid gap-x-8 gap-y-3 border-b border-linie py-5 sm:grid-cols-[9rem_1fr_1fr]"
+                  >
+                    <p className="font-mono text-label tracking-[0.09em] text-text-zweit uppercase">
+                      {zeile.merkmal}
+                    </p>
+                    {[0, 1].map((i) => (
+                      <div key={i}>
+                        {/* Auf dem Telefon stehen die beiden Regelwerke
+                            untereinander; ohne Spaltenkopf daneben braucht
+                            jede Zelle ihre eigene Beschriftung. */}
+                        <p
+                          className={cn(
+                            "font-mono text-label tracking-[0.09em] uppercase sm:hidden",
+                            i === 0 ? "text-text-zweit" : "font-bold text-titel",
+                          )}
+                        >
+                          {detail.rechtliches!.spalten[i]}
+                        </p>
+                        {zeile.zahl && (
+                          <p className="mt-1 font-mono text-[clamp(1.25rem,1.05rem+0.6vw,1.625rem)] leading-none font-bold whitespace-nowrap text-titel sm:mt-0">
+                            {zeile.zahl[i]}
+                          </p>
+                        )}
+                        {zeile.text[i] && (
+                          <p className="mt-2 max-w-[42ch] leading-relaxed text-text-zweit">
+                            {zeile.text[i]}
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 ))}
               </div>
-              <p className="mt-5 max-w-[64ch] border-t border-linie pt-4 font-mono text-xs leading-relaxed text-text-zweit">
+
+              <p className="mt-5 max-w-[64ch] font-mono text-xs leading-relaxed text-text-zweit">
                 {detail.rechtliches.stand}
               </p>
             </section>
@@ -179,9 +241,11 @@ export default async function LeistungsDetailSeite({
                 );
               })}
             </p>
-            <Link href="/termin" className={knopf("haupt", "mt-6")}>
+            <Link href="/termin" className={knopf("haupt", "group mt-6")}>
               {t("detailTermin")}
-              <PfeilRechtsIcon className="size-4" />
+              <span aria-hidden="true" className="kw-pfeil-schacht">
+                <PfeilRechtsIcon className="kw-pfeil-quer size-4" />
+              </span>
             </Link>
           </div>
         </div>

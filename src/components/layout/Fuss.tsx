@@ -64,7 +64,7 @@ export async function Fuss() {
               <Link
                 key={href}
                 href={href}
-                className="text-sm text-white/85 underline decoration-white/30 underline-offset-4 hover:decoration-white"
+                className="text-sm text-white/85 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white hover:decoration-white"
               >
                 {label}
               </Link>

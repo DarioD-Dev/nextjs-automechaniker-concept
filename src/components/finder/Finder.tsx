@@ -6,6 +6,7 @@ import { STUFEN_RANG, type Problem } from "@/data/types";
 import { ProblemSymbol } from "@/components/icons/ProblemSymbol";
 import { AufprallIcon, PfeilRechtsIcon } from "@/components/icons/UiIcons";
 import { StufenSymbol, useStufenWorte } from "@/components/problem/Stufe";
+import { cn } from "@/lib/cn";
 
 /**
  * Der Einstieg — und der Grund, warum die klickbare Fahrzeuggrafik verworfen
@@ -46,7 +47,10 @@ export async function Finder() {
       <h2 className="mt-14 text-abschnitt font-semibold">{t("symptomeTitel")}</h2>
       <p className="mt-2 text-text-zweit">{t("symptomeLead")}</p>
 
-      <ul className="mt-6 divide-y divide-linie border-y border-linie">
+      {/* Linien und Hoverfläche stehen 12 bzw. 16px weiter außen als der Text.
+          Bündig war die aktive Zeile ein markierter Textblock statt einer
+          Zeile, die auf den Zeiger reagiert. */}
+      <ul className="mt-6 -mx-3 divide-y divide-linie border-y border-linie sm:-mx-4">
         {SYMPTOME.map((problem) => (
           <li key={problem.kennung}>
             <SymptomZeile problem={problem} />
@@ -59,13 +63,19 @@ export async function Finder() {
           eine Versicherung — zwei Kartenfelder, die dort brechen würden. */}
       <h2 className="mt-14 text-abschnitt font-semibold">{t("unfallTitel")}</h2>
 
+      {/* Dieselbe Zeilenform wie die Symptome darüber, nur mit stärkerer
+          Oberkante und größerem Zeichen. Vorher war das ein gerahmter Kasten
+          aus der ersten Fassung — als einziges Element des Finders, und
+          damit die Stelle, an der die Seite nach Baukasten aussah. */}
       <Link
         href="/unfall"
-        className="group mt-4 flex items-center gap-4 border border-linie bg-karte px-4 py-5 transition-colors hover:border-instrument sm:px-5"
+        className="group relative mt-6 -mx-3 flex items-center gap-4 border-y border-linie-stark px-3 py-5 transition-colors before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:origin-top before:scale-y-0 before:bg-akzent before:transition-transform hover:bg-karte hover:before:scale-y-100 focus-visible:bg-karte focus-visible:before:scale-y-100 sm:-mx-4 sm:px-4"
       >
-        <AufprallIcon className="size-8 shrink-0 text-text-zweit" />
-        <span className="min-w-0 flex-1 leading-relaxed">{t("unfallLead")}</span>
-        <PfeilRechtsIcon className="size-5 shrink-0 text-text-zweit transition-transform group-hover:translate-x-0.5" />
+        <AufprallIcon className="size-10 shrink-0 text-text-zweit transition-colors group-hover:text-titel" />
+        <span className="min-w-0 flex-1 text-lead leading-relaxed">{t("unfallLead")}</span>
+        <span aria-hidden="true" className="kw-pfeil-schacht shrink-0">
+          <PfeilRechtsIcon className="kw-pfeil-quer size-5 shrink-0 text-text-zweit" />
+        </span>
       </Link>
     </div>
   );
@@ -85,7 +95,16 @@ function LeuchtenKachel({ problem }: { problem: Problem }) {
           "--selbsttest-feld": rot ? "var(--stufe-sofort-feld)" : "var(--stufe-bald-feld)",
         } as CSSProperties
       }
-      className="kw-selbsttest flex h-full flex-col items-center gap-2 border border-linie bg-karte px-3 py-5 text-center transition-colors hover:border-instrument"
+      /* Beim Überfahren nimmt die Kachel die Farbe an, die ihre Leuchte
+         wirklich hat — Rot für „anhalten", Gelb für „bald prüfen lassen".
+         Das ist der eine Ort, an dem eine Informationsfarbe auf Hover
+         reagieren darf: Sie sagt hier dasselbe wie im Cockpit. */
+      className={cn(
+        "kw-selbsttest flex h-full flex-col items-center gap-2 border border-linie bg-karte px-3 py-5 text-center transition-colors",
+        rot
+          ? "hover:border-sofort hover:bg-sofort-feld focus-visible:border-sofort focus-visible:bg-sofort-feld"
+          : "hover:border-bald hover:bg-bald-feld focus-visible:border-bald focus-visible:bg-bald-feld",
+      )}
     >
       <ProblemSymbol
         kennung={problem.kennung}
@@ -103,9 +122,12 @@ function SymptomZeile({ problem }: { problem: Problem }) {
   return (
     <Link
       href={{ pathname: "/problem/[kennung]", params: { kennung: problem.kennung } }}
-      className="group flex items-center gap-4 py-4 transition-colors hover:bg-karte"
+      className="group relative flex items-center gap-4 px-3 py-4 transition-colors before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:origin-top before:scale-y-0 before:bg-akzent before:transition-transform hover:bg-karte hover:before:scale-y-100 focus-visible:bg-karte focus-visible:before:scale-y-100 sm:px-4"
     >
-      <ProblemSymbol kennung={problem.kennung} className="size-8 shrink-0 text-text-zweit" />
+      <ProblemSymbol
+        kennung={problem.kennung}
+        className="size-8 shrink-0 text-text-zweit transition-colors group-hover:text-titel"
+      />
       <span className="min-w-0 flex-1">
         <span className="block font-semibold">{problem.titel}</span>
         <span className="mt-0.5 flex items-center gap-1.5 font-mono text-xs text-text-zweit">
@@ -113,7 +135,9 @@ function SymptomZeile({ problem }: { problem: Problem }) {
           {worte.wort}
         </span>
       </span>
-      <PfeilRechtsIcon className="size-5 shrink-0 text-text-zweit transition-transform group-hover:translate-x-0.5" />
+      <span aria-hidden="true" className="kw-pfeil-schacht shrink-0">
+        <PfeilRechtsIcon className="kw-pfeil-quer size-5 shrink-0 text-text-zweit" />
+      </span>
     </Link>
   );
 }

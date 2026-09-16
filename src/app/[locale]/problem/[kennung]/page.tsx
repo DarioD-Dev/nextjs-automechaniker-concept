@@ -5,7 +5,7 @@ import { assertLocale } from "@/i18n/locale";
 import { routing } from "@/i18n/routing";
 import { PROBLEME, findeProblem } from "@/data/probleme";
 import { buildAlternates } from "@/lib/seo";
-import { ProblemKarte } from "@/components/problem/ProblemKarte";
+import { Befundbericht } from "@/components/problem/Befundbericht";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -46,5 +46,5 @@ export default async function ProblemSeite({ params }: PageProps<"/[locale]/prob
   const problem = findeProblem(kennung);
   if (!problem) notFound();
 
-  return <ProblemKarte problem={problem} />;
+  return <Befundbericht problem={problem} />;
 }

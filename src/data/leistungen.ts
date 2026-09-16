@@ -194,8 +194,23 @@ export type LeistungsDetail = {
   nichtEnthalten: readonly string[];
   danach: readonly { titel: string; text: string }[];
   grenze: string;
-  /** Nur wo Rechtsangaben vorkommen: Absätze plus Stand. */
-  rechtliches?: { absaetze: readonly string[]; stand: string };
+  /**
+   * Nur wo Rechtsangaben vorkommen. Als Gegenüberstellung, nicht als Absätze:
+   * Beim Pickerl geht es um zwei Regelwerke — das heutige und das ab 2027 —
+   * und die Frage ist immer „was gilt bei mir". Nebeneinander beantwortet
+   * eine Tabelle das in Sekunden, untereinander muss man drei Absätze lesen
+   * und die Unterschiede selbst heraussuchen.
+   */
+  rechtliches?: {
+    spalten: readonly [string, string];
+    zeilen: readonly {
+      merkmal: string;
+      /** Die Kurzform, die man vergleicht — groß gesetzt. */
+      zahl?: readonly [string, string];
+      text: readonly [string, string];
+    }[];
+    stand: string;
+  };
   verwandteProbleme: readonly string[];
 };
 
@@ -273,10 +288,23 @@ export const DETAILS = [
     grenze:
       "Ob Ihr Fahrzeug die Plakette bekommt, sagen wir Ihnen nicht vorab und schätzen es auch nicht. Wir haben es nicht gesehen — und eine Begutachtung, deren Ergebnis vorher feststeht, wäre keine.",
     rechtliches: {
-      absaetze: [
-        "Für Personenkraftwagen gilt derzeit die 3-2-1-Regel: erstmals drei Jahre nach der ersten Zulassung, dann nach zwei weiteren Jahren, danach jährlich.",
-        "Begutachtet werden kann vom Beginn des Monats vor dem gelochten Monat bis zum Ende des vierten Monats danach.",
-        "Das ändert sich: Mit 19. Mai 2027 gelten für PKW die Intervalle 4-2-2-2-1, und die Toleranzfrist nach dem Lochungsmonat entfällt — begutachtet werden kann dann bis zu vier Monate vorher.",
+      spalten: ["Heute", "Ab 19. Mai 2027"],
+      zeilen: [
+        {
+          merkmal: "Intervall PKW",
+          zahl: ["3 – 2 – 1", "4 – 2 – 2 – 2 – 1"],
+          text: [
+            "Erstmals drei Jahre nach der ersten Zulassung, dann nach zwei weiteren Jahren, danach jährlich.",
+            "",
+          ],
+        },
+        {
+          merkmal: "Zeitfenster",
+          text: [
+            "Vom Beginn des Monats vor dem gelochten Monat bis zum Ende des vierten Monats danach.",
+            "Bis zu vier Monate vor dem gelochten Monat. Die Toleranzfrist nach dem Lochungsmonat entfällt.",
+          ],
+        },
       ],
       stand:
         "Angaben nach § 57a KFG und der 42. KFG-Novelle, Stand September 2026. Verbindlich sind Ihr Zulassungsschein und Ihre Plakette, nicht diese Seite.",

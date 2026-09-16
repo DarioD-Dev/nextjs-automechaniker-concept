@@ -73,6 +73,46 @@ export const FAHRBEREITSCHAFT = [
 /** Block 03 — was mitgenommen werden muss. Der gesetzliche Kern ist der
  *  Nachweis von Name und Anschrift (§ 4 Abs. 5 StVO), der Rest ist das,
  *  was die Schadensregulierung hinterher tatsächlich braucht. */
+/**
+ * Block 03, Polizeifrage. Vorher standen hier drei Absätze Fließtext — und die
+ * Frage, die jemand am Unfallort tatsächlich hat, ist eine Ja/Nein-Frage mit
+ * drei Fällen. Als Fallunterscheidung findet man seinen Fall in Sekunden
+ * statt ihn aus einem Absatz herauszulesen.
+ *
+ * Wortlaut und Rechtsgrundlage unverändert (§ 4 StVO 1960), nur aufgeteilt in
+ * Fall und Folge. Die Pflicht steht als Wort da, nicht als Farbe: Rot und Gelb
+ * tragen auf dieser Seite Fahrbereitschaft.
+ */
+export const POLIZEI = [
+  {
+    fall: "Jemand ist verletzt",
+    pflicht: "muss",
+    folge: "Die nächste Polizeidienststelle sofort verständigen. Das ist keine Ermessensfrage.",
+  },
+  {
+    fall: "Nur Sachschaden, und die Beteiligten haben einander Name und Anschrift nachgewiesen",
+    pflicht: "kann",
+    folge: "Die Verständigung kann entfallen.",
+  },
+  {
+    fall: "Nur Sachschaden, aber der Nachweis ist nicht möglich — etwa beim Parkschaden ohne Verursacher",
+    pflicht: "muss",
+    folge: "Den Unfall ohne unnötigen Aufschub der nächsten Polizeidienststelle melden.",
+  },
+] as const;
+
+/** Was nach dem Unfallort zu tun ist. Zwei Fristen, keine zwei Absätze. */
+export const VERSICHERUNG = [
+  {
+    frist: "Innerhalb einer Woche",
+    text: "Melden Sie den Schaden Ihrer Versicherung unverzüglich, spätestens innerhalb einer Woche.",
+  },
+  {
+    frist: "Europäischer Unfallbericht",
+    text: "Er ist dafür gemacht und liegt oft im Handschuhfach. Er ersetzt keine Schuldanerkennung — und Sie müssen keine unterschreiben.",
+  },
+] as const;
+
 export const DATEN = [
   "Name und Anschrift aller Beteiligten — das ist der gesetzliche Kern",
   "Kennzeichen und Fahrzeugtyp aller beteiligten Fahrzeuge",

@@ -44,16 +44,36 @@ export default async function WerkstattSeite({ params }: PageProps<"/[locale]/we
             {t("ablaufLead")}
           </p>
 
-          <ol className="mt-8 divide-y divide-linie border-y border-linie">
+          {/* FORM C — DIE PROZESSKETTE
+              Vier untereinander gesetzte Zeilen sind eine Liste. Ein Ablauf
+              ist aber keine Liste, sondern eine Kette: Die Reihenfolge ist die
+              Information. Deshalb liegen die vier Stationen auf einer
+              durchgehenden Linie, jede mit einer Marke darauf.
+
+              Zwischen den Spalten steht kein Gap, sondern Innenabstand: Mit
+              Gap zerfiele die Linie in vier Striche, und genau das wäre
+              wieder eine Liste. Auf schmalen Geräten kippt die Kette in die
+              Senkrechte und die Linie läuft links durch; die Aussage bleibt
+              dieselbe. Dazwischen — Tablet — zwei mal zwei: Vier Spalten
+              wären dort zu schmal, eine einzige ließe die halbe Breite leer.
+
+              Linie und Marke liegen in globals.css (.kw-kette), weil die
+              Linie sich beim Hereinscrollen aufbauen soll. Als Rahmen der
+              Zelle ginge das nicht, ohne dass der Text mitspringt. */}
+          <ol className="kw-kette mt-10 grid md:grid-cols-2 md:gap-y-12 lg:grid-cols-4 lg:gap-y-0">
             {ABLAUF.map((schritt) => (
               <li
                 key={schritt.nummer}
-                className="grid gap-2 py-5 sm:grid-cols-[13rem_1fr] sm:gap-6"
+                className="pb-10 pl-6 last:pb-0 md:pt-8 md:pr-8 md:pb-0 md:pl-0"
               >
-                <p className="font-mono text-label tracking-[0.09em] uppercase">
-                  {schritt.label} / {schritt.nummer}
+                <span aria-hidden="true" className="kw-marke bg-akzent" />
+                <p className="font-mono text-label tracking-[0.09em] text-titel uppercase">
+                  {schritt.label}
                 </p>
-                <p className="max-w-[58ch] leading-relaxed">{schritt.text}</p>
+                <p className="mt-3 font-mono text-[clamp(2.25rem,1.6rem+2vw,3rem)] leading-none font-bold text-titel/60">
+                  {schritt.nummer}
+                </p>
+                <p className="mt-4 max-w-[46ch] leading-relaxed">{schritt.text}</p>
               </li>
             ))}
           </ol>
@@ -68,7 +88,7 @@ export default async function WerkstattSeite({ params }: PageProps<"/[locale]/we
             {t("menschenLead")}
           </p>
 
-          <ul className="mt-8 grid gap-6 sm:grid-cols-3">
+          <ul className="kw-auf-reihe mt-8 grid gap-6 sm:grid-cols-3">
             {PERSONEN.map((person) => (
               <li key={person.name} className="border border-linie bg-karte p-5">
                 {/* Initialen statt Stockfoto — Begründung im Datenmodell. */}
@@ -119,26 +139,40 @@ export default async function WerkstattSeite({ params }: PageProps<"/[locale]/we
         </Container>
       </Section>
 
-      <Section className="border-b border-linie">
-        <Container className="max-w-[62rem]">
-          <AbschnittsLabel nummer="04">{t("pruefstelleLabel")}</AbschnittsLabel>
-          <h2 className="mt-3 text-abschnitt font-semibold">{t("pruefstelleTitel")}</h2>
+      {/* FORM A — DAS DUNKLE STATEMENT
+          Die Ermächtigung ist keine Leistung und keine Zahl, sondern die eine
+          überprüfbare Aussage dieser Seite. Sie stand als gerahmte Karte
+          zwischen zwei Listen und sah aus wie ein weiterer Eintrag.
 
-          <div className="mt-6 max-w-[62rem] border border-instrument bg-karte p-5 sm:p-6">
-            <p className="text-lead leading-relaxed font-medium">{t("pruefstelleText")}</p>
-            <p className="mt-4 max-w-[62ch] leading-relaxed text-text-zweit">
-              {t("pruefstelleWarum")}
-            </p>
-            <Link
-              href={{ pathname: "/leistungen/[slug]", params: { slug: "pickerl" } }}
-              className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium underline decoration-linie-stark underline-offset-4 hover:decoration-instrument"
-            >
-              {t("pruefstelleLink")}
-              <PfeilRechtsIcon className="size-4" />
-            </Link>
+          Aussage groß links, Begründung schmal rechts, beide auf einer
+          Oberkante. Einmal pro Seite — die Listen darüber und darunter leben
+          davon, dass diese Fläche nicht wiederkehrt. */}
+      <section className="bg-instrument text-text-auf-instrument">
+        <Container className="max-w-[62rem] py-16 sm:py-20 lg:py-24">
+          <p className="font-mono text-label tracking-[0.09em] text-white/70 uppercase">
+            {t("pruefstelleLabel")} / 04
+          </p>
+
+          <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-start lg:gap-16">
+            <h2 className="max-w-[18ch] text-[clamp(1.75rem,1.1rem+2.6vw,2.75rem)] leading-[1.1] font-bold tracking-[-0.02em] hyphens-none">
+              {t("pruefstelleTitel")}
+            </h2>
+            <div className="max-w-[48ch]">
+              <p className="text-lead leading-relaxed font-medium">{t("pruefstelleText")}</p>
+              <p className="mt-4 leading-relaxed text-white/80">{t("pruefstelleWarum")}</p>
+              <Link
+                href={{ pathname: "/leistungen/[slug]", params: { slug: "pickerl" } }}
+                className="group -my-1 mt-6 inline-flex items-center gap-1.5 py-1 text-sm font-medium text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white"
+              >
+                {t("pruefstelleLink")}
+                <span aria-hidden="true" className="kw-pfeil-schacht">
+                  <PfeilRechtsIcon className="kw-pfeil-quer size-4" />
+                </span>
+              </Link>
+            </div>
           </div>
         </Container>
-      </Section>
+      </section>
 
       <Section id="anfahrt" className="scroll-mt-20">
         <Container className="max-w-[62rem]">
@@ -187,7 +221,7 @@ export default async function WerkstattSeite({ params }: PageProps<"/[locale]/we
             {t("fiktionHinweis")}{" "}
             <Link
               href="/konzept"
-              className="underline decoration-linie-stark underline-offset-4 hover:decoration-instrument"
+              className="-my-1 inline-block py-1 underline decoration-linie-stark underline-offset-4 transition-colors hover:text-titel hover:decoration-instrument"
             >
               {t("zumKonzept")}
             </Link>

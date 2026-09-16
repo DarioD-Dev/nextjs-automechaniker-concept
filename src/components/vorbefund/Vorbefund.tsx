@@ -66,7 +66,7 @@ export function Vorbefund() {
           onClick={() => setOffen((o) => !o)}
           aria-expanded={offen}
           aria-controls="vorbefund-inhalt"
-          className="kw-nicht-drucken flex w-full items-center gap-3 px-4 py-3.5 text-left"
+          className="kw-nicht-drucken flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors hover:bg-grund"
         >
           <StufenSymbol stufe={stufe} className="size-3.5" />
           <span className="flex-1 font-mono text-label tracking-[0.09em] uppercase">
@@ -138,15 +138,17 @@ export function Vorbefund() {
           <div className="kw-nicht-drucken flex flex-wrap items-center gap-3 border-t border-linie px-4 py-3">
             <Link
               href="/termin"
-              className="inline-flex items-center gap-1.5 rounded-sm bg-instrument px-4 py-2.5 text-sm font-semibold text-text-auf-instrument transition-colors hover:bg-instrument-hell"
+              className="group inline-flex items-center gap-1.5 rounded-sm bg-instrument px-4 py-2.5 text-sm font-semibold text-text-auf-instrument transition-[background-color,transform] hover:-translate-y-px hover:bg-instrument-hell"
             >
               {t("weiter")}
-              <PfeilRechtsIcon className="size-4" />
+              <span aria-hidden="true" className="kw-pfeil-schacht">
+                <PfeilRechtsIcon className="kw-pfeil-quer size-4" />
+              </span>
             </Link>
             <button
               type="button"
               onClick={() => window.print()}
-              className="inline-flex items-center gap-1.5 text-sm font-medium underline decoration-linie-stark underline-offset-4 hover:decoration-instrument"
+              className="-my-1 inline-flex items-center gap-1.5 py-1 text-sm font-medium underline decoration-linie-stark underline-offset-4 hover:decoration-instrument"
             >
               <DruckenIcon className="size-4" />
               {t("drucken")}

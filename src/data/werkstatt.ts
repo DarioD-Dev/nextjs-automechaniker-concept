@@ -68,26 +68,35 @@ export const PERSONEN = [
  * Der Ablauf. Er ist zugleich die Stelle, an der die drei Zusagen von der
  * Startseite konkret werden — eine Zusage, die im Prozess keinen Ort hat,
  * ist keine.
+ *
+ * `kurz` ist die Fassung für die Startseite. Vorher stand derselbe volle Text
+ * auf /de und auf /de/werkstatt — viermal wortgleich, direkt untereinander im
+ * selben Besuch. Die Kurzfassung ist keine neue Aussage, sondern dieselbe
+ * gekürzt; der vollständige Wortlaut steht weiterhin auf der Werkstattseite.
  */
 export const ABLAUF = [
   {
     nummer: "01",
     label: "Annahme",
+    kurz: "Wir sagen vorher, was wir prüfen, wie lange es dauert und was es kostet.",
     text: "Sie beschreiben, was Ihnen aufgefallen ist. Wir sehen uns das Fahrzeug an und sagen Ihnen, was wir prüfen wollen, wie lange das dauert und was es kostet — bevor wir anfangen.",
   },
   {
     nummer: "02",
     label: "Befund",
+    kurz: "Befund auf Papier: was geprüft wurde, was gefunden wurde, was wir daraus schließen.",
     text: "Wir prüfen. Danach bekommen Sie einen Befund: was geprüft wurde, was gefunden wurde und was wir daraus schließen. Auf Papier, nicht zwischen Tür und Angel.",
   },
   {
     nummer: "03",
     label: "Freigabe",
+    kurz: "Keine Arbeit ohne Ihre Freigabe. Wird es teurer als besprochen, rufen wir vorher an.",
     text: "Sie entscheiden. Keine Arbeit ohne Ihre Freigabe. Stellt sich unterwegs heraus, dass es teurer wird als besprochen, rufen wir an — vorher, nicht mit der Rechnung.",
   },
   {
     nummer: "04",
     label: "Abholung",
+    kurz: "Rechnung Position für Position. Alte Teile auf Wunsch zurück.",
     text: "Wir gehen die Rechnung mit Ihnen durch, Position für Position. Alte Teile bekommen Sie auf Wunsch zurück.",
   },
 ] as const;
@@ -113,7 +122,7 @@ export const AUSSTATTUNG = [
 /** Was hier nicht steht. Eine Werkstatt, die Grenzen zugibt, wirkt
  *  kompetenter, nicht schwächer. */
 export const NICHT_IM_HAUS =
-  "Karosserie und Lack machen wir nicht selbst. Dafür arbeiten wir mit einem Partnerbetrieb zusammen und bleiben Ihr Ansprechpartner. Oldtimer und Tuning machen wir gar nicht — dafür empfehlen wir Ihnen gerne jemanden.";
+  "Karosserie und Lack machen wir nicht selbst — dafür arbeiten wir mit einem Partnerbetrieb zusammen und bleiben Ihr Ansprechpartner. Oldtimer und Tuning machen wir gar nicht.";
 
 /** Anfahrt. Ebenfalls erfunden. */
 export const ANFAHRT = [

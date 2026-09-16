@@ -73,7 +73,7 @@ export const PROBLEME = [
     spannenHinweis:
       "Nach oben offen: Ein Lagerschaden bedeutet Motorinstandsetzung und liegt deutlich über dieser Spanne. Ob es so weit kommt, hängt fast immer davon ab, wie lange der Motor nach dem Aufleuchten noch gelaufen ist.",
     grenze:
-      "Ob der Öldruck wirklich fehlt oder nur der Schalter falsch meldet, unterscheidet niemand am Telefon und kein Ratgeber im Internet — die beiden Fälle fühlen sich beim Fahren völlig gleich an. Dazwischen liegen 45 Euro und ein Motorschaden. Entschieden wird das mit einem Manometer am Motor, und erst danach reden wir über Geld.",
+      "Ob der Öldruck wirklich fehlt oder nur der Schalter falsch meldet, unterscheidet niemand am Telefon — die beiden Fälle fühlen sich beim Fahren gleich an. Dazwischen liegen 45 Euro und ein Motorschaden. Entschieden wird das mit einem Manometer am Motor, und erst danach reden wir über Geld.",
     leistung: { titel: "Fehlersuche & Diagnose", preis: "ab 30 €" },
     verwandt: ["motorkontrollleuchte", "kuehlmitteltemperatur"],
   },
@@ -91,6 +91,11 @@ export const PROBLEME = [
       "Sie können kurz und vorsichtig weiterfahren. Lassen Sie den Fehlerspeicher in den nächsten Tagen auslesen, bevor aus einem gespeicherten Wert ein Bauteil wird.",
     verschaerfung:
       "Wenn die Leuchte blinkt, wenn der Motor ruckelt oder wenn spürbar Leistung fehlt, gilt etwas anderes: nicht weiterfahren. Eine blinkende Motorkontrollleuchte bedeutet Verbrennungsaussetzer — die schieben unverbrannten Kraftstoff in den Katalysator und können ihn innerhalb weniger Kilometer zerstören.",
+    // Dieselben drei Bedingungen wie oben, als Hauptsätze. Das „oder" der
+    // Vorlage steckt in der Beschriftung der Liste.
+    verschaerfungMerkmale: ["Die Leuchte blinkt", "Der Motor ruckelt", "Es fehlt spürbar Leistung"],
+    verschaerfungGrund:
+      "Eine blinkende Motorkontrollleuchte bedeutet Verbrennungsaussetzer — die schieben unverbrannten Kraftstoff in den Katalysator und können ihn innerhalb weniger Kilometer zerstören.",
     ursachen: [
       {
         titel: "Tankdeckel nicht richtig geschlossen",
@@ -131,6 +136,41 @@ export const PROBLEME = [
     pruefkosten: 30,
     pruefkostenHinweis:
       "Das ist das Auslesen des Fehlerspeichers. Auslesen ist noch keine Diagnose: Der Code sagt, welches System sich meldet, nicht welches Bauteil defekt ist. Wenn wir danach suchen müssen, rechnen wir ab der halben Stunde — 60 €, und das sagen wir vorher.",
+    // Dieselben Angaben wie in pruefkostenHinweis und auf der Detailseite
+    // „Fehlersuche & Diagnose", nur nebeneinander statt hintereinander.
+    // 30 € = WERKSTATT.auslesen, 60 € = WERKSTATT.diagnosepauschale, also
+    // genau eine halbe Stunde des Stundensatzes von 120 €.
+    preisvergleich: {
+      // Wörtlich aus pruefkostenHinweis; derselbe Satz steht als kernsatz auf
+      // der Detailseite „Fehlersuche & Diagnose".
+      kernsatz: "Auslesen ist noch keine Diagnose.",
+      spalten: [
+        { titel: "Auslesen", betrag: "30 €", zusatz: "fester Preis" },
+        {
+          titel: "Diagnose",
+          betrag: "ab 60 €",
+          zusatz: "Arbeitszeit zu 120 € je Stunde, ab einer halben Stunde",
+        },
+      ],
+      zeilen: [
+        {
+          merkmal: "Was Sie danach wissen",
+          werte: ["Welches System sich meldet.", "Welches Bauteil defekt ist."],
+        },
+        {
+          merkmal: "Was enthalten ist",
+          werte: [
+            "Auslesen aller erreichbaren Steuergeräte, Erklärung der Einträge im Klartext statt als Zahlencode, ein Ausdruck zum Mitnehmen.",
+            "Messwerte im Betrieb, Sichtprüfung, gezielte Bauteilprüfung. Dazu ein schriftlicher Befund und ein Kostenvoranschlag, bevor etwas repariert wird.",
+          ],
+        },
+        {
+          merkmal: "Anrechnung",
+          werte: ["", "Beauftragen Sie die Reparatur bei uns, rechnen wir die Diagnose an."],
+        },
+      ],
+      hinweis: "Was wir ansetzen, sagen wir Ihnen vorher.",
+    },
     reparaturSpanne: { von: 0, bis: 480 },
     spannenHinweis:
       "Die Null ist ernst gemeint. War es der Tankdeckel, löschen wir den Fehler, zeigen Ihnen die Dichtung, und Sie zahlen nur die Diagnose.",
@@ -147,7 +187,7 @@ export const PROBLEME = [
     leuchtfarbe: "rot",
     zone: "motorraum",
     klartext:
-      "Das Kühlmittel im Motor ist wärmer geworden, als es sein darf. Ein Motor hält kurzzeitig viel aus, aber Überhitzung ist einer der wenigen Fälle, in denen aus einem Bauteil für 90 Euro binnen Minuten ein Schaden für ein Vielfaches wird.",
+      "Das Kühlmittel im Motor ist wärmer geworden, als es sein darf. Überhitzung ist einer der wenigen Fälle, in denen aus einem Bauteil für 90 Euro binnen Minuten ein Schaden für ein Vielfaches wird.",
     dringlichkeit: "sofort",
     handlung:
       "Halten Sie an, sobald es sicher möglich ist, und stellen Sie den Motor ab. Öffnen Sie die Motorhaube, aber nicht den Verschluss des Kühlmittelbehälters — das System steht unter Druck, und heißes Kühlmittel spritzt beim Öffnen heraus.",
@@ -257,7 +297,7 @@ export const PROBLEME = [
     spannenHinweis:
       "Ganz unten steht bewusst die Null: War es die Feststellbremse, sagen wir Ihnen das an der Tür und Sie zahlen nichts dafür.",
     grenze:
-      "Wir können Ihnen online nicht sagen, ob die Bremsflüssigkeit nur knapp unter der Marke steht oder ob sie irgendwo austritt. Der Stand sinkt auch ganz ohne Defekt, wenn die Beläge dünner werden. Welcher der beiden Fälle vorliegt, entscheidet eine Sichtprüfung an allen vier Rädern — und die geht nur mit abgenommenen Rädern.",
+      "Ob die Bremsflüssigkeit nur knapp unter der Marke steht oder irgendwo austritt, können wir online nicht sagen. Der Stand sinkt auch ohne Defekt, wenn die Beläge dünner werden. Welcher Fall vorliegt, entscheidet eine Sichtprüfung an allen vier Rädern — und die geht nur mit abgenommenen Rädern.",
     leistung: { titel: "Fehlersuche & Diagnose", preis: "ab 60 €" },
     verwandt: ["bremsen-quietschen", "abs"],
   },
@@ -269,12 +309,12 @@ export const PROBLEME = [
     leuchtfarbe: "rot",
     zone: "motorraum",
     klartext:
-      "Das Ladesystem meldet, dass die Batterie nicht mehr geladen wird. Ab jetzt läuft das Fahrzeug aus der Batterie. Wie lange das reicht, hängt an ihrem Alter, an der Temperatur und daran, was gerade Strom zieht — rechnen Sie nicht damit, dass es für eine bestimmte Strecke genügt.",
+      "Das Ladesystem meldet, dass die Batterie nicht mehr geladen wird. Ab jetzt läuft das Fahrzeug aus der Batterie. Wie lange das reicht, hängt an Alter, Temperatur und Verbrauchern — rechnen Sie nicht mit einer bestimmten Strecke.",
     dringlichkeit: "sofort",
     handlung:
       "Halten Sie an, sobald es sicher möglich ist. Schalten Sie vorher alles ab, was Strom zieht und nicht gebraucht wird — Klimaanlage, Sitzheizung, Radio, Gebläse. Fahrlicht bleibt an, solange Sie fahren.",
     verschaerfung:
-      "Wenn zusätzlich die Lenkung schwerer wird, die Temperatur steigt oder es nach verbranntem Gummi riecht, ist vermutlich der Riemen gerissen. Dann bleibt es nicht bei einer leeren Batterie. Ob der Riemen bei Ihrem Motor auch die Wasserpumpe antreibt, ist von Bauart zu Bauart verschieden — bei vielen tut er es, bei anderen sitzt die Pumpe an der Steuerkette oder am Zahnriemen. Weil Sie das von außen nicht erkennen können, gilt hier: anhalten.",
+      "Wenn zusätzlich die Lenkung schwerer wird, die Temperatur steigt oder es nach verbranntem Gummi riecht, ist vermutlich der Riemen gerissen. Dann bleibt es nicht bei einer leeren Batterie — anhalten.",
     ursachen: [
       {
         titel: "Keilrippenriemen gerissen oder abgesprungen",
@@ -316,7 +356,7 @@ export const PROBLEME = [
     spannenHinweis:
       "Unten steht ein neuer Riemen, oben eine getauschte Lichtmaschine. Ein gerissener Riemen kann teurer werden als die Lichtmaschine, wenn er beim Reißen andere Bauteile beschädigt hat.",
     grenze:
-      "Vom Cockpit aus ist nicht zu unterscheiden, ob die Lichtmaschine nicht mehr lädt oder der Riemen gerissen ist. Der Unterschied ist erheblich: Der Riemen treibt bei den meisten Motoren auch die Wasserpumpe an, und dann steht nach wenigen Minuten nicht nur die Stromversorgung, sondern auch die Kühlung. Genau deshalb raten wir hier zum Anhalten und nicht zur zügigen Weiterfahrt.",
+      "Vom Cockpit aus ist nicht zu unterscheiden, ob die Lichtmaschine nicht mehr lädt oder der Riemen gerissen ist. Der Unterschied ist erheblich: Der Riemen treibt bei den meisten Motoren auch die Wasserpumpe an — dann steht nach wenigen Minuten auch die Kühlung. Deshalb raten wir hier zum Anhalten.",
     leistung: { titel: "Batterietest", preis: "kostenlos" },
     verwandt: ["springt-nicht-an", "kuehlmitteltemperatur"],
   },
@@ -328,10 +368,10 @@ export const PROBLEME = [
     leuchtfarbe: "gelb",
     zone: "vorderachse",
     klartext:
-      "Das Antiblockiersystem hat sich abgeschaltet. Die hydraulische Bremse selbst arbeitet weiter — das Fahrzeug bremst. Was fehlt, ist die Regelung, die bei einer Vollbremsung das Blockieren der Räder verhindert. Bei vielen Fahrzeugen fällt zusammen mit dem ABS auch die Stabilitätsregelung ESP aus; ob das bei Ihrem Modell so ist, steht in der Betriebsanleitung.",
+      "Das Antiblockiersystem hat sich abgeschaltet. Die hydraulische Bremse arbeitet weiter, das Fahrzeug bremst. Was fehlt, ist die Regelung, die bei einer Vollbremsung das Blockieren der Räder verhindert. Bei vielen Fahrzeugen fällt damit auch die Stabilitätsregelung ESP aus — ob bei Ihrem Modell, steht in der Betriebsanleitung.",
     dringlichkeit: "bald",
     handlung:
-      "In der Regel können Sie weiterfahren — maßgeblich ist, was die Betriebsanleitung Ihres Fahrzeugs dazu sagt. Halten Sie mehr Abstand als sonst und rechnen Sie damit, dass die Räder bei einer Vollbremsung blockieren und das Fahrzeug dabei nicht mehr lenkbar ist. Lassen Sie den Fehlerspeicher in den nächsten Tagen auslesen.",
+      "In der Regel können Sie weiterfahren — maßgeblich ist die Betriebsanleitung Ihres Fahrzeugs. Halten Sie mehr Abstand und rechnen Sie damit, dass die Räder bei einer Vollbremsung blockieren und das Fahrzeug dabei nicht mehr lenkbar ist. Fehlerspeicher in den nächsten Tagen auslesen lassen.",
     verschaerfung:
       "Wenn gleichzeitig die rote Bremswarnleuchte an ist, gilt etwas anderes: Dann meldet nicht nur die Regelung, sondern die Bremsanlage selbst. In dem Fall nicht weiterfahren.",
     ursachen: [
@@ -454,7 +494,7 @@ export const PROBLEME = [
       "Der Filter, der den Ruß aus dem Abgas holt, ist voll und hat sich nicht selbst freibrennen können. Die Leuchte ist zunächst eine Aufforderung, keine Fehlermeldung — sie sagt, dass das Fahrzeug jetzt eine bestimmte Art von Fahrt braucht.",
     dringlichkeit: "bald",
     handlung:
-      "Fahren Sie eine längere Strecke ohne Halt bei gleichmäßig etwas höherer Drehzahl — Landstraße oder Autobahn, zwanzig bis dreißig Minuten, üblicherweise im Bereich um 2.000 bis 3.000 Umdrehungen. Was Ihr Hersteller dafür vorgibt, steht in der Betriebsanleitung und geht unseren Angaben vor. Geht die Leuchte danach nicht aus, machen Sie einen Termin aus.",
+      "Fahren Sie zwanzig bis dreißig Minuten ohne Halt bei gleichmäßig höherer Drehzahl — Landstraße oder Autobahn, üblicherweise um 2.000 bis 3.000 Umdrehungen. Was Ihr Hersteller vorgibt, steht in der Betriebsanleitung und geht unseren Angaben vor. Geht die Leuchte danach nicht aus, machen Sie einen Termin aus.",
     verschaerfung:
       "Wenn zusätzlich die Motorkontrollleuchte angeht oder die Leistung spürbar nachlässt, hören Sie mit den Regenerationsversuchen auf. Ab da schaltet die Steuerung in ein Notprogramm, und weiteres Fahren macht den Filter nicht wieder frei.",
     ursachen: [
@@ -559,7 +599,7 @@ export const PROBLEME = [
     spannenHinweis:
       "Unten stehen Schlauch und Schelle. Oben steht wieder die Zylinderkopfdichtung. Und wenn sich herausstellt, dass es Kondenswasser der Klimaanlage war, ist gar nichts kaputt — das sagen wir Ihnen, ohne etwas zu berechnen.",
     grenze:
-      "Woher die Flüssigkeit kommt, sieht man nicht an der Pfütze, sondern an der Stelle, an der sie austritt — und die liegt meistens oben, nicht unten. Deshalb drücken wir den Kreis ab, statt zu raten. Was sich aus der Ferne gar nicht beurteilen lässt: ob überhaupt Kühlmittel fehlt oder ob Sie Kondenswasser vor sich haben.",
+      "Woher die Flüssigkeit kommt, sieht man nicht an der Pfütze, sondern an der Austrittsstelle — und die liegt meistens oben, nicht unten. Deshalb drücken wir den Kreis ab, statt zu raten. Aus der Ferne gar nicht zu beurteilen: ob überhaupt Kühlmittel fehlt oder ob Sie Kondenswasser vor sich haben.",
     leistung: { titel: "Fehlersuche & Diagnose", preis: "ab 60 €" },
     verwandt: ["kuehlmitteltemperatur", "klimaanlage-blaest-warm"],
   },
@@ -680,7 +720,7 @@ export const PROBLEME = [
     spannenHinweis:
       "Null, wenn nur ein Verbraucher angelassen war und die Batterie beim kostenlosen Test ihre Werte hält. Oben steht ein getauschter Anlasser.",
     grenze:
-      "Ob die Batterie schwach ist oder der Anlasser, klingt am Telefon ähnlich und ist technisch etwas ganz anderes. Das klärt eine Messung unter Last in wenigen Minuten. Was wir Ihnen gar nicht sagen können: ob Ihre Batterie nach dem Laden noch ein halbes Jahr durchhält. Das hängt an ihrem Alter und daran, wie oft sie schon tief entladen war.",
+      "Ob die Batterie schwach ist oder der Anlasser, klingt am Telefon ähnlich und ist technisch etwas ganz anderes. Das klärt eine Messung unter Last in wenigen Minuten. Was wir gar nicht sagen können: ob Ihre Batterie nach dem Laden noch ein halbes Jahr hält. Das hängt an ihrem Alter und daran, wie oft sie tief entladen war.",
     leistung: { titel: "Batterietest", preis: "kostenlos" },
     verwandt: ["ladekontrolle"],
   },
@@ -740,7 +780,7 @@ export const PROBLEME = [
     spannenHinweis:
       "99 Euro ist der Klimaservice mit neuem Kältemittel, 119 Euro mit Desinfektion des Verdampfers. Alles darüber ist eine echte Reparatur: Kondensator, Leitung oder Kompressor.",
     grenze:
-      "Ob die Anlage nur leer ist oder ein Leck hat, zeigt sich erst beim Befüllen und Nachmessen. Deshalb sagen wir Ihnen vorher nicht zu, dass die 99 Euro reichen. Was wir Ihnen zusagen: Kältemittel nachfüllen ohne Lecksuche ist bei einer undichten Anlage weggeworfenes Geld, und wir sagen Ihnen, welcher der beiden Fälle vorliegt, bevor Sie sich entscheiden.",
+      "Ob die Anlage nur leer ist oder ein Leck hat, zeigt sich erst beim Befüllen und Nachmessen. Deshalb sagen wir vorher nicht zu, dass die 99 Euro reichen. Nachfüllen ohne Lecksuche ist bei einer undichten Anlage weggeworfenes Geld — welcher Fall vorliegt, sagen wir Ihnen vor Ihrer Entscheidung.",
     leistung: { titel: "Klimaservice", preis: "ab 99 €" },
     verwandt: ["pfuetze-unter-dem-auto"],
   },

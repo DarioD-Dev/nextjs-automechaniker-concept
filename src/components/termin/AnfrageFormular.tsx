@@ -78,7 +78,7 @@ export function AnfrageFormular() {
           aria-invalid={zustand.fehler?.anliegen ? true : undefined}
           aria-describedby={zustand.fehler?.anliegen ? "anliegen-fehler" : undefined}
           className={cn(
-            "mt-2 w-full border bg-karte px-3 py-2.5 leading-relaxed",
+            "mt-2 w-full border bg-karte px-3 py-2.5 leading-relaxed transition-colors hover:border-instrument",
             zustand.fehler?.anliegen ? "border-sofort" : "border-linie-stark",
           )}
         />
@@ -104,7 +104,7 @@ export function AnfrageFormular() {
           {[t("wannDieseWoche"), t("wannNaechsteWoche"), t("wannFlexibel")].map((wahl, i) => (
             <label
               key={wahl}
-              className="inline-flex items-center gap-2 border border-linie-stark bg-karte px-4 py-2.5 text-sm has-checked:border-instrument has-checked:bg-grund"
+              className="inline-flex items-center gap-2 border border-linie-stark bg-karte px-4 py-2.5 text-sm transition-colors hover:border-instrument has-checked:border-instrument has-checked:bg-grund"
             >
               <input type="radio" name="wann" value={wahl} defaultChecked={i === 2} />
               {wahl}
@@ -162,7 +162,7 @@ function Feld({
         aria-invalid={fehler ? true : undefined}
         aria-describedby={fehler ? `${name}-fehler` : undefined}
         className={cn(
-          "mt-1 w-full border bg-karte px-3 py-2.5",
+          "mt-1 w-full border bg-karte px-3 py-2.5 transition-colors hover:border-instrument",
           fehler ? "border-sofort" : "border-linie-stark",
         )}
         {...props}
