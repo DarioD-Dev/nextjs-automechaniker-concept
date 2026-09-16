@@ -6,6 +6,7 @@ import { Finder } from "@/components/finder/Finder";
 import { ABLAUF, PERSONEN, WERKSTATT } from "@/data/werkstatt";
 import { findeLeistung } from "@/data/leistungen";
 import { Link } from "@/i18n/navigation";
+import Image from "next/image";
 import { PfeilRechtsIcon } from "@/components/icons/UiIcons";
 
 export default async function Startseite({ params }: PageProps<"/[locale]">) {
@@ -22,15 +23,42 @@ export default async function Startseite({ params }: PageProps<"/[locale]">) {
           Keine Dringlichkeitsfarben hier: Rot, Gelb und Blau bedeuten den
           Zustand eines Fahrzeugs. Über ein Fahrzeug, das wir nicht kennen,
           sagen wir im Einstieg nichts. */}
-      <section className="flex min-h-[calc(100svh-4.25rem)] flex-col">
-        <Container className="flex flex-1 flex-col justify-center py-16 sm:py-24">
+      <section className="relative flex min-h-[calc(100svh-4.25rem)] flex-col">
+        {/* Das Bild ist kein Bildrechteck neben dem Text, sondern eine eigene
+            Fläche: randlos bis zum rechten Seitenrand, bündig mit dem
+            Markenband unten, und oben bleibt Off-White stehen. Dadurch ist die
+            Aufteilung in beiden Richtungen asymmetrisch — kein 50/50-Hero.
+
+            Der Ausschnitt: Rad, Heck und Hebebühne. Der Absaugschlauch ab 74 %
+            des Originals bleibt draußen, er wäre die unruhigste Stelle im
+            Bild. object-position 20 % legt das Fenster auf 10–60 % der
+            Bildbreite. */}
+        <div className="pointer-events-none absolute top-[21%] right-0 bottom-0 hidden w-[42vw] max-w-[44rem] lg:block">
+          <Image
+            src="/bilder/werkstatt-hebebuehne.jpg"
+            alt={t("bildAlt")}
+            fill
+            priority
+            sizes="42vw"
+            className="object-cover object-[4%_center]"
+          />
+        </div>
+
+        <Container className="relative flex flex-1 flex-col justify-center py-16 sm:py-24">
           <p className="font-mono text-label tracking-[0.09em] text-titel uppercase">
             {t("ortLabel")} {WERKSTATT.plz} {WERKSTATT.ort}
           </p>
 
-          <h1 className="mt-6 max-w-[14ch] text-marke font-bold text-titel">{t("titel")}</h1>
+          {/* hyphens-none: Die globale Trennregel ist für Fachkomposita gedacht
+              („Motorkontrollleuchte"). Hier trennte sie „Ih-rem" — im
+              Markenmoment ist das der teuerste mögliche Umbruch. */}
+          <h1 className="mt-6 max-w-[13ch] text-marke font-bold text-titel hyphens-none lg:max-w-[9ch]">
+            {t("titel")}
+          </h1>
 
-          <p className="mt-8 max-w-[48ch] text-lead leading-relaxed text-text-zweit">{t("lead")}</p>
+          <p className="mt-8 max-w-[44ch] text-lead leading-relaxed text-text-zweit lg:max-w-[38ch]">
+            {t("lead")}
+          </p>
 
           {/* Genau eine Handlung. Sie führt nicht weg, sondern weiter: in den
               Finder direkt darunter. */}
@@ -43,12 +71,30 @@ export default async function Startseite({ params }: PageProps<"/[locale]">) {
           </a>
         </Container>
 
+        {/* Mobil ein kompakter Streifen statt einer Bildfläche: Die
+            Handlung soll ohne Scrollen erreichbar bleiben. */}
+        <div className="relative mt-auto h-56 w-full sm:h-64 lg:hidden">
+          <Image
+            src="/bilder/werkstatt-hebebuehne.jpg"
+            alt={t("bildAlt")}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[22%_center]"
+          />
+        </div>
+
         {/* Der Markensatz schließt den ersten Bildschirm ab und trennt ihn von
-            der Informationsebene darunter. */}
-        <div className="bg-instrument">
-          <Container className="py-4">
+            der Informationsebene darunter. Rechts daneben der Bildnachweis —
+            klein, an der Kante, statt als Bildunterschrift, die den ruhigen
+            Einstieg zerschneiden würde. */}
+        <div className="relative bg-instrument">
+          <Container className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4">
             <p className="font-mono text-label tracking-[0.09em] text-text-auf-instrument uppercase">
               {WERKSTATT.zeile}
+            </p>
+            <p className="font-mono text-[0.6875rem] tracking-[0.06em] whitespace-nowrap text-white/65">
+              {t("bildCaption")}
             </p>
           </Container>
         </div>

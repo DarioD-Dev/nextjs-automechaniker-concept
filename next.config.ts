@@ -12,6 +12,11 @@ const withNextIntl = createNextIntlPlugin();
 // `next start` liegt das Projektverzeichnis ohnehin richtig. Erst in der
 // Produktion fehlte die Datei — sichtbar dann, wenn jemand den Link teilt.
 const nextConfig: NextConfig = {
+  images: {
+    // AVIF zuerst: Das Hero-Bild ist das Seitengewicht der Startseite und
+    // landet damit deutlich unter WebP bei gleicher Qualität.
+    formats: ["image/avif", "image/webp"],
+  },
   outputFileTracingIncludes: {
     "/opengraph-image": ["./assets/**/*.woff"],
   },

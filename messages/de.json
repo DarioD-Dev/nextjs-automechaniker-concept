@@ -46,7 +46,9 @@
     "menschenTitel": "Drei Menschen, keine Abteilung",
     "zurWerkstatt": "Mehr über die Werkstatt",
     "ortLabel": "Kfz-Werkstatt in",
-    "heroCta": "Symptom auswählen"
+    "heroCta": "Symptom auswählen",
+    "bildAlt": "Ein Fahrzeug steht angehoben auf einer Zweisäulenhebebühne in einer hellen Werkstatthalle.",
+    "bildCaption": "Beispielaufnahme — nicht die KLARWERK-Werkstatt"
   },
   "Problem": {
     "zurueck": "Alle Symptome",
