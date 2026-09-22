@@ -1,4 +1,4 @@
-import { PROBLEME, findeProblem } from "@/data/probleme";
+import { findeProblem } from "@/data/probleme";
 import { STUFEN_RANG, type Problem, type Stufe } from "@/data/types";
 
 /**
@@ -90,6 +90,3 @@ export function alsAnliegen(probleme: readonly Problem[]): string {
 function stufenWort(stufe: Stufe): string {
   return stufe === "sofort" ? "sofort" : stufe === "bald" ? "bald" : "planbar";
 }
-
-/** Nur für die Laufzeitprüfung im Entwicklungsmodus interessant. */
-export const ALLE_KENNUNGEN: readonly string[] = PROBLEME.map((p) => p.kennung);

@@ -161,6 +161,12 @@
     "text": "Vielleicht hat sich die Adresse geändert, vielleicht ein Tippfehler. Von der Startseite kommen Sie in zwei Klicks zu jedem Symptom.",
     "zurStartseite": "Zur Startseite"
   },
+  "Fehler": {
+    "titel": "Hier ist etwas schiefgelaufen",
+    "text": "Diese Seite konnte gerade nicht geladen werden. Das liegt an uns, nicht an Ihnen. Ein neuer Versuch hilft meistens — wenn es dringend ist, rufen Sie besser an.",
+    "nochmal": "Erneut versuchen",
+    "zurStartseite": "Zur Startseite"
+  },
   "Unfall": {
     "titel": "Es hat gekracht.",
     "lead": "Diese Seite hilft Ihnen danach — nicht in dem Moment, in dem es passiert ist. Wenn Sie gerade am Unfallort stehen, gilt für Sie nur der erste Abschnitt.",

@@ -786,8 +786,6 @@ export const PROBLEME = [
   },
 ] as const satisfies readonly Problem[];
 
-export type ProblemKennung = (typeof PROBLEME)[number]["kennung"];
-
 export function findeProblem(kennung: string): Problem | undefined {
   return PROBLEME.find((p) => p.kennung === kennung);
 }

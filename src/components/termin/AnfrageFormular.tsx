@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { anfrageSenden, type AnfrageZustand } from "@/lib/actions/anfrage";
 import { alsAnliegen } from "@/lib/vorbefund";
@@ -16,6 +16,15 @@ export function AnfrageFormular() {
   const t = useTranslations("Termin");
   const { bereit, probleme } = useVorbefund();
   const [zustand, absenden, laeuft] = useActionState(anfrageSenden, START);
+  const bestaetigungRef = useRef<HTMLDivElement>(null);
+
+  // Die Bestätigung ersetzt das Formular. Ohne diese Zeile bliebe der Fokus
+  // auf einem Absendeknopf, den es nicht mehr gibt — er fiele auf <body>, und
+  // der nächste Tabulator begänne wieder ganz oben auf der Seite. Dieselbe
+  // Behandlung wie in den vier Geschwisterprojekten.
+  useEffect(() => {
+    if (zustand.status === "demo") bestaetigungRef.current?.focus();
+  }, [zustand.status]);
 
   // Die Übergabe aus dem Vorbefund, beim Rendern abgeleitet statt per Effekt
   // nachgereicht: `null` heißt "der Besucher hat das Feld noch nicht angefasst",
@@ -29,7 +38,12 @@ export function AnfrageFormular() {
 
   if (zustand.status === "demo" && zustand.zusammenfassung) {
     return (
-      <div className="border border-instrument bg-karte p-6">
+      <div
+        ref={bestaetigungRef}
+        tabIndex={-1}
+        role="status"
+        className="border border-instrument bg-karte p-6 outline-none"
+      >
         <h2 className="flex items-center gap-2 text-block font-semibold">
           <HakenIcon className="size-5" />
           {t("demoTitel")}
