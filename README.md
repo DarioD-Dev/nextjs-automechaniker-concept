@@ -26,7 +26,7 @@ Drei Dinge machen sie anders als der Branchendurchschnitt:
 Das Unterscheidungsmerkmal. Er sammelt Beobachtungen über mehrere Problemkarten
 hinweg und leitet daraus die eine Aussage ab, die sonst niemand liefert:
 **die höchste Dringlichkeit bestimmt die Handlung.** Echte Kunden haben selten
-genau ein Symptom — sie haben eine gelbe Leuchte *und* ein Quietschen und
+genau ein Symptom — sie haben eine gelbe Leuchte _und_ ein Quietschen und
 wissen nicht, was davon das Dringende ist.
 
 Er ist druckbar und belegt die Terminanfrage vor. Er **diagnostiziert nicht**:

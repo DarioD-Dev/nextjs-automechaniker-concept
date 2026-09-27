@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { assertLocale } from "@/i18n/locale";
 import { routing } from "@/i18n/routing";
-import { buildAlternates, SITE_URL } from "@/lib/seo";
+import { OG_IMAGE_ALT, SITE_URL, buildAlternates } from "@/lib/seo";
 import { inter, jetbrains } from "@/styles/fonts";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { Kopf } from "@/components/layout/Kopf";
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
       // Ausdrücklich gesetzt und nicht der automatischen Ergänzung überlassen:
       // Next führt `openGraph` NICHT zusammen, sondern ersetzt es ganz. Jede
       // Seite mit eigenem openGraph würde die Bildangabe sonst überschreiben.
-      images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630 }],
+      images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: OG_IMAGE_ALT }],
     },
     twitter: { card: "summary_large_image" },
   };

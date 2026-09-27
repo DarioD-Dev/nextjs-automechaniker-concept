@@ -1,6 +1,17 @@
 import { getPathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 
+/**
+ * Der Alternativtext des Vorschaubilds — an einer Stelle, weil ihn zwei
+ * Module brauchen: `app/opengraph-image.tsx` exportiert ihn als `alt`, und
+ * das `images`-Objekt der Linkvorschau muss ihn am Bild mitgeben. Next
+ * ergänzt das Datei-Metadatum nämlich NUR, solange keine eigene
+ * `openGraph.images`-Angabe existiert — und die steht hier aus gutem Grund.
+ * Ohne diese Zusammenführung bleibt der Export wirkungslos und og:image:alt
+ * leer.
+ */
+export const OG_IMAGE_ALT = "KLARWERK — Kfz-Werkstatt in Wien";
+
 // Einzige Stelle, an der der absolute Ursprung herkommt. Ohne ihn rendert Next
 // canonical- und OpenGraph-Adressen relativ, was sie für Crawler und
 // Linkvorschauen wertlos macht.

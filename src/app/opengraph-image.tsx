@@ -1,11 +1,12 @@
 import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { OG_IMAGE_ALT } from "@/lib/seo";
 import { WERKSTATT } from "@/data/werkstatt";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "KLARWERK — Kfz-Werkstatt in Wien";
+export const alt = OG_IMAGE_ALT;
 
 /**
  * Eine statische Karte, keine dynamische Architektur.
