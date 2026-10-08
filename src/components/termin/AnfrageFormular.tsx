@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { anfrageSenden, type AnfrageZustand } from "@/lib/actions/anfrage";
 import { alsAnliegen } from "@/lib/vorbefund";
@@ -36,6 +36,32 @@ export function AnfrageFormular() {
   const anliegen = eingabe ?? vorschlag;
   const uebernommen = eingabe === null && vorschlag !== "";
 
+  // Vorschau clientseitig, Foto geht trotzdem über den normalen Datei-Input
+  // (name="foto") ins FormData und damit zur Serveraktion — kein zweiter,
+  // paralleler Übertragungsweg nötig.
+  //
+  // Die Objekt-URL entsteht direkt beim Rendern (useMemo), nicht erst in
+  // einem Effekt: Sie hängt an nichts als `datei` und ist kein externer
+  // Zustand, den man synchronisieren müsste. Der Effekt darunter kümmert
+  // sich ausschließlich um die Freigabe — ohne die bliebe bei jedem
+  // Fotowechsel die vorherige Datei im Speicher.
+  const [datei, setDatei] = useState<File | null>(null);
+  const dateiInputRef = useRef<HTMLInputElement>(null);
+  const vorschauUrl = useMemo(() => (datei ? URL.createObjectURL(datei) : null), [datei]);
+
+  useEffect(() => {
+    return () => {
+      if (vorschauUrl) URL.revokeObjectURL(vorschauUrl);
+    };
+  }, [vorschauUrl]);
+
+  function fotoEntfernen() {
+    setDatei(null);
+    // Nur den State zu leeren reicht nicht: Der Datei-Input ist unkontrolliert
+    // und behält seinen Wert, solange niemand ihn explizit zurücksetzt.
+    if (dateiInputRef.current) dateiInputRef.current.value = "";
+  }
+
   if (zustand.status === "demo" && zustand.zusammenfassung) {
     return (
       <div
@@ -58,6 +84,7 @@ export function AnfrageFormular() {
               [t("anliegen"), zustand.zusammenfassung.anliegen],
               [t("fahrzeug"), zustand.zusammenfassung.fahrzeug],
               [t("wann"), zustand.zusammenfassung.wann],
+              [t("foto"), zustand.zusammenfassung.foto ?? t("fotoKeines")],
               [t("kontakt"), zustand.zusammenfassung.kontakt],
             ] as const
           ).map(([bezeichnung, wert]) => (
@@ -124,6 +151,41 @@ export function AnfrageFormular() {
               {wahl}
             </label>
           ))}
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend className="font-semibold">{t("foto")}</legend>
+        <p className="mt-1 text-sm text-text-zweit">{t("fotoHinweis")}</p>
+        <div className="mt-3 flex items-center gap-4">
+          {vorschauUrl && (
+            // Objekt-URL einer lokal gewählten Datei — next/image kann
+            // blob:-URLs nicht optimieren, ein <img> ist hier richtig.
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={vorschauUrl}
+              alt=""
+              className="size-20 shrink-0 rounded-sm border border-linie-stark object-cover"
+            />
+          )}
+          <div className="flex flex-col items-start gap-2">
+            <label className={cn(knopf("zweit"), "cursor-pointer")}>
+              {datei ? t("fotoAendern") : t("fotoAuswaehlen")}
+              <input
+                ref={dateiInputRef}
+                type="file"
+                name="foto"
+                accept="image/*"
+                className="sr-only"
+                onChange={(e) => setDatei(e.target.files?.[0] ?? null)}
+              />
+            </label>
+            {datei && (
+              <button type="button" onClick={fotoEntfernen} className={knopf("still")}>
+                {t("fotoEntfernen")}
+              </button>
+            )}
+          </div>
         </div>
       </fieldset>
 
