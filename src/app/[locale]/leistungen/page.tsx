@@ -5,6 +5,7 @@ import { buildAlternates } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { Ehrlichkeitsstufen } from "@/components/leistungen/Ehrlichkeitsstufen";
 import { Preistafel } from "@/components/leistungen/Preistafel";
+import { SaisonErinnerung } from "@/components/leistungen/SaisonErinnerung";
 import { Zahlen } from "@/components/leistungen/Zahlen";
 import { Zusagen } from "@/components/leistungen/Zusagen";
 
@@ -39,6 +40,8 @@ export default async function LeistungenSeite({ params }: PageProps<"/[locale]/l
       <Zahlen />
 
       <Zusagen />
+
+      <SaisonErinnerung />
     </article>
   );
 }
